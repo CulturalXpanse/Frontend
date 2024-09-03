@@ -3,45 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="CulteX es una plataforma diseñada para 
-    facilitar el intercambio cultural entre personas de diversas partes del 
-    mundo. Actúa como una red social donde los usuarios pueden compartir, descubrir y 
-    aprender sobre diferentes culturas, tradiciones y costumbres. Con CulteX, puedes 
-    conectarte con otros apasionados por la cultura, participar en discusiones 
-    enriquecedoras, y expandir tu conocimiento sobre las diversas formas de vida alrededor del planeta.">
-    <meta name="keywords" content="CulteX,red social,intercambio cultural,culturas,tradiciones,costumbres,conectar personas
-    ,aprendizaje cultural,diversidad culturalcompartir culturas,comunidad global,plataforma cultural,exploración cultural,
-    conocimiento cultural,redes sociales culturales">
+    <meta name="description" content="CulteX es una plataforma diseñada para facilitar el intercambio cultural entre personas de diversas partes del mundo.">
+    <meta name="keywords" content="CulteX,red social,intercambio cultural,culturas,tradiciones,costumbres,conectar personas">
     <meta name="author" content="Kevin Pereira, Xanders Ibarra, Martin Martinez, Juan Curbelo">
-    <title>Inicio de Sesión</title>
-    <link rel="stylesheet" type="text/css" href="Estilos CSS/loginEstilo.css">
+    <title>CulteX | Inicio de Sesión</title>
+    <link rel="stylesheet" type="text/css" href="../CSS/login.css">
+    <link rel="icon" href="../Img/IconoPaginaCulteX.png" type="image/icon type">
 </head>
 <body>
     <div class="container">
-        <div class="image image1">Imagen 1</div>
         <div class="center-section">
             <div class="logo">
-                <img src="Imagenes/CulteXLogoNegro.png" alt="Logo"> 
+                <img src="../Img/LogoCulteXLetrasNegrasChica.png" alt="Logo"> 
             </div>
             <form class="login-form">
-                Correo electrónico<input type="email" required>
-                Contraseña<input type="password" required>
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" required>
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" required>
                 <span class="mensaje-error">Mensaje de error en caso de ingresar datos erróneos</span>
-                <a href="index.html"><button>Iniciar sesión</button></a>
-                <a href="#" class="olvidar-contrasenia">¿Olvidaste la contraseña?</a>
-                <div class="sign-up">
-                    <span>¿Ya tienes cuenta?</span> <a href="#">Inicia sesión</a>
+                <button type="submit">Iniciar sesión</button>
+                <div class="button-group">
+                    <a href="#" class="button olvidar-contrasenia">¿Olvidaste la contraseña?</a>
+                    <a href="#" class="button registrarse">Regístrate</a>
                 </div>
             </form>
         </div>
-        <div class="image image2">Imagen 2</div>
     </div>
     <footer>
         <div class="footer-content">
-            <a href="#">Cambiar idioma</a>
-            <span>Información de contacto (correo - redes sociales)</span>
-            <span>Derechos de autor - CulturalXpanse</span>
-            <a href="#">Centro de ayuda</a>
+            <a href="#" class="button cambiar-idioma">Cambiar idioma</a>
+            <div class="social-icons">
+                <a href="https://www.instagram.com" target="_blank">
+                    <img src="../Img/instagram.png" alt="Instagram">
+                </a>
+                <a href="https://www.facebook.com" target="_blank">
+                    <img src="../Img/facebook.png" alt="Facebook">
+                </a>
+                <a href="https://www.twitter.com" target="_blank">
+                    <img src="../Img/twitter.png" alt="X">
+                </a>
+                <a href="https://www.tiktok.com" target="_blank">
+                    <img src="../Img/tik-tok.png" alt="TikTok">
+                </a>
+            </div>
+            <div class="footer-legal">
+                <span>&copy; 2024 CulteX, CulturalXpanse. Todos los derechos reservados.</span>
+                <a href="#">Centro de ayuda</a>
+            </div>
         </div>
     </footer>
 </body>
