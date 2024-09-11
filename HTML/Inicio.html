@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Kevin Pereira">
+    <meta name="description" content="CulteX es una plataforma diseñada para facilitar el intercambio cultural entre personas de diversas partes del mundo.">
+    <meta name="keywords" content="CulteX,red social,intercambio cultural,culturas,tradiciones,costumbres,conectar personas">
+    <meta name="author" content="Kevin Pereira, Xanders Ibarra, Martin Martinez, Juan Curbelo">
     <link rel="stylesheet" href="../CSS/main.css">
     <link rel="stylesheet" href="../CSS/posts.css">
     <link rel="stylesheet" href="../CSS/footer.css">
@@ -17,11 +19,11 @@
     <header class="header">
         <div class="containerDashboard">
             <div class="perfil">
-                <a href="../HTML/Perfil.html"><img src="../Img/imagenPerfil.png" alt="Foto" class="perfil-img"></a>
-                <a class="perfil-nombre" href="../HTML/Perfil.html"><span>Kevin</span></a>
+                <a href="../HTML/perfil.html"><img src="../Img/imagenPerfil.png" alt="Foto" class="perfil-img"></a>
+                <a class="perfil-nombre" href="../HTML/perfil.html"><span>Kevin</span></a>
             </div>
             <div class="containerDashboard">
-                <a href="../HTML/Inicio.html"><img class="logo" src="../Img/LogoCulteXLetrasBlancasChica.png" alt="Logo"></a>
+                <a href="../HTML/inicio.html"><img class="logo" src="../Img/LogoCulteXLetrasBlancasChica.png" alt="Logo"></a>
             </div>
             <div class="containerDashboard">
                 <input type="text" placeholder="Buscar..." class="search-bar">
@@ -33,15 +35,12 @@
                     <li class="dropdown">
                         <a href="#" class="dropbtn"><i class="fa-solid fa-bars"></i></a>
                         <div class="dropdown-content">
-                            <a href="../HTML/Perfil.html"><i class="fas fa-user-circle"></i>Perfil</a>
-                            <a href="../HTML/Bloqueados.html"><i class="fas fa-ban"></i>Bloqueados</a>
-                            <a href="../HTML/Configuracion.html"><i class="fas fa-cogs"></i>Configuración</a>
-                            <a href="../HTML/Idioma.html"><i class="fas fa-globe"></i>Idioma</a>
-                            <a href="../HTML/Ayuda.html"><i class="fas fa-question-circle"></i>Ayuda</a>
-                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="logout-button"><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                            </form>
+                            <a href="../HTML/perfil.html"><i class="fas fa-user-circle"></i>Perfil</a>
+                            <a href="../HTML/bloqueados.html"><i class="fas fa-ban"></i>Bloqueados</a>
+                            <a href="../HTML/configuracion.html"><i class="fas fa-cogs"></i>Configuración</a>
+                            <a href="../HTML/idioma.html"><i class="fas fa-globe"></i>Idioma</a>
+                            <a href="../HTML/ayuda.html"><i class="fas fa-question-circle"></i>Ayuda</a>
+                            <a id="logout-button" style="cursor: pointer;"><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a>
                         </div>
                     </li>
                 </ul>
@@ -157,8 +156,9 @@
         </div>
     </footer>
 
-    <script src="../JS/main.js"></script>
+    <script src="../JS/mainScript.js"></script>
     <script src="../JS/scriptLikes.js"></script>
+    <script src="../JS/inicioScript.js"></script>
+    <script src="../JS/cerrarSesionScript.js"></script>
 </body>
-
 </html>
