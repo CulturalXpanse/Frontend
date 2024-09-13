@@ -98,7 +98,7 @@ body {
     color: var(--error-color);
     font-size: 12px;
     margin-bottom: 10px;
-    display: none;
+    text-align: center;
 }
 
 .register-form button {
@@ -139,25 +139,6 @@ body {
 }
 
 .button:hover {
-    color: var(--color1);
-    background-color: var(--color3);
-    transform: scale(1.05);
-}
-
-.button.cambiar-idioma {
-    padding: 10px 20px;
-    font-size: 14px;
-    font-weight: bold;
-    color: var(--color2);
-    background-color: var(--color7);
-    border-radius: 5px;
-    text-align: center;
-    text-decoration: none;
-    margin-left: 20px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.button.cambiar-idioma:hover {
     color: var(--color1);
     background-color: var(--color3);
     transform: scale(1.05);

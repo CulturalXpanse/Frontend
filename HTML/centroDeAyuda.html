@@ -6,34 +6,42 @@
     <meta name="description" content="CulteX es una plataforma diseñada para facilitar el intercambio cultural entre personas de diversas partes del mundo.">
     <meta name="keywords" content="CulteX,red social,intercambio cultural,culturas,tradiciones,costumbres,conectar personas">
     <meta name="author" content="Kevin Pereira, Xanders Ibarra, Martin Martinez, Juan Curbelo">
-    <title>CulteX | Centro de Ayuda</title>
+    <title data-trad="titulo">CulteX | Centro de Ayuda</title>
     <link rel="stylesheet" type="text/css" href="../CSS/centroDeAyuda.css">
+    <link rel="stylesheet" href="../CSS/IdiomaModal.css">
     <link rel="icon" href="../Img/IconoPaginaCulteX.png" type="image/icon type">
 </head>
 <body>
     <div class="container">
+        <div class="divBotonAtras">
+            <a href="javascript:history.back()" class="botonAtras" data-trad="atras">Atrás</a>
+        </div>
         <div class="center-section">
             <div class="logo">
                 <img src="../Img/LogoCulteXLetrasNegrasChica.png" alt="Logo"> 
             </div>
             <div class="preguntas-frecuentes">
-                <h2>Preguntas Frecuentes</h2>
+                <h2 data-trad="preguntas">Preguntas Frecuentes</h2>
                 <ul>
                     <li>
-                        <h3>Pregunta 1</h3>
-                        <p>Respuesta 1</p>
+                        <h3 data-trad="pregunta1">¿Cómo creo una cuenta en CulteX?</h3>
+                        <p data-trad="respuesta1">Para crear una cuenta, dirígete a la página de registro y completa el formulario con tus datos personales. Una vez completado, puedes iniciar sesión.</p>
                     </li>
                     <li>
-                        <h3>Pregunta 2</h3>
-                        <p>Respuesta 2</p>
+                        <h3 data-trad="pregunta2">¿Cómo puedo restablecer mi contraseña?</h3>
+                        <p data-trad="respuesta2">Si olvidaste tu contraseña, puedes restablecerla haciendo clic en "Olvidé mi contraseña" en la página de inicio de sesión. Ingresa tu correo electrónico, donde te llevará a la página de cambio de contraseña.</p>
                     </li>
                     <li>
-                        <h3>Pregunta 3</h3>
-                        <p>Respuesta 3</p>
+                        <h3 data-trad="pregunta3">¿Cómo puedo editar mi perfil?</h3>
+                        <p data-trad="respuesta3">Para editar tu perfil, inicia sesión y dirígete a la sección "Mi perfil". Allí podrás cambiar tu foto de perfil, actualizar tu biografía y modificar tus preferencias de privacidad.</p>
                     </li>
                     <li>
-                        <h3>Pregunta 4</h3>
-                        <p>Respuesta 4</p>
+                        <h3 data-trad="pregunta4">¿Cómo funciona el sistema de amigos?</h3>
+                        <p data-trad="respuesta4">Puedes enviar solicitudes de amistad a otros usuarios de CulteX. Cuando la persona acepte tu solicitud, podrán ver las publicaciones de cada uno, comentar y compartir contenido de manera más cercana.</p>
+                    </li>
+                    <li>
+                        <h3 data-trad="pregunta5">¿Cómo puedo eliminar mi cuenta?</h3>
+                        <p data-trad="respuesta5">Si deseas eliminar tu cuenta, puedes hacerlo desde la sección de "Configuración de la cuenta". Ten en cuenta que esta acción es irreversible y se eliminarán todos tus datos, publicaciones y contactos.</p>
                     </li>
                 </ul>
             </div>
@@ -41,7 +49,7 @@
     </div>
     <footer>
         <div class="footer-content">
-            <a href="#" class="button cambiar-idioma">Cambiar idioma</a>
+            <a href="#" class="button" id="openModal" data-trad="cambiarIdioma">Cambiar idioma</a>
             <div class="social-icons">
                 <a href="https://www.instagram.com" target="_blank">
                     <img src="../Img/instagram.png" alt="Instagram">
@@ -57,10 +65,19 @@
                 </a>
             </div>
             <div class="footer-legal">
-                <span>&copy; 2024 CulteX,</span> <img src="../Img/LogoCulturalXpanseSinFondoBlanco.png" alt="Logo Empresa">  <span>Todos los derechos reservados.</span>
-                <a href="../HTML/Ayuda.html">Centro de ayuda</a>
+                <span>&copy; 2024 CulteX,</span> <img src="../Img/LogoCulturalXpanseSinFondoBlanco.png" alt="Logo Empresa"> <span data-trad="derechos">Todos los derechos reservados.</span>
             </div>
         </div>
     </footer>
+    <div id="languageModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 data-trad="seleccionIdioma">Selecciona el idioma</h2>
+            <button class="language-option" data-idioma="es">Español</button>
+            <button class="language-option" data-idioma="en">English</button>
+        </div>
+    </div>
+    <script src="../JS/idiomaScript.js"></script>
+    <script src="../JS/cargarIdioma.js"></script>
 </body>
 </html>

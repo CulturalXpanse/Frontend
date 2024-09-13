@@ -144,25 +144,6 @@ body {
     transform: scale(1.05);
 }
 
-.button.cambiar-idioma {
-    padding: 10px 20px;
-    font-size: 14px;
-    font-weight: bold;
-    color: var(--color2);
-    background-color: var(--color7);
-    border-radius: 5px;
-    text-align: center;
-    text-decoration: none;
-    margin-left: 20px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.button.cambiar-idioma:hover {
-    color: var(--color1);
-    background-color: var(--color3);
-    transform: scale(1.05);
-}
-
 footer {
     background-color: var(--color1);
     padding: 20px;
@@ -215,7 +196,6 @@ footer {
     color: var(--primary-color);
     text-decoration: none;
 }
-
 
 @keyframes fadeIn {
     from {

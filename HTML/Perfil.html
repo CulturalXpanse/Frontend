@@ -51,9 +51,7 @@
     <aside class="left-sidebar">
         <ul class="listas">
             <h2>Grupos</h2>
-            <li><a href="#"><img src="../Img/perfilDefault.png" alt="Foto de Grupo"> Grupo 1</a></li>
-            <li><a href="#"><img src="../Img/perfilDefault.png" alt="Foto de Grupo"> Grupo 2</a></li>
-            <li><a href="#"><img src="../Img/perfilDefault.png" alt="Foto de Grupo"> Grupo 3</a></li>
+            <li><a href="#"><img id="URL" alt="Foto de Grupo"> Grupo 1</a></li>
             <input type="text" placeholder="Buscar grupos..." class="search-bar-sidebar">
         </ul>
     </aside>
@@ -61,9 +59,7 @@
     <aside class="right-sidebar">
         <ul class="listas">
             <h2>Amigos</h2>
-            <li><a href="#"><img src="../Img/perfilDefault.png" alt="Foto de Amigos"> Amigo 1</a></li>
-            <li><a href="#"><img src="../Img/perfilDefault.png" alt="Foto de Amigos"> Amigo 2</a></li>
-            <li><a href="#"><img src="../Img/perfilDefault.png" alt="Foto de Amigos"> Amigo 3</a></li>
+            <li><a href="#"><img id="URL" alt="Foto de Amigos"></a></li>
             <input type="text" placeholder="Buscar amigos..." class="search-bar-sidebar">
         </ul>
     </aside>
@@ -79,10 +75,17 @@
             <p>&copy; 2024 CulteX, CulturalXpanse. Todos los derechos reservados.</p>
         </div>
     </footer>
-
-    <script src="../JS/main.js"></script>
-    <script src="../JS/scriptLikes.js"></script>
-    <script src="../JS/perfilScript.js"></script>
+    <div id="languageModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 data-trad="seleccionIdioma">Selecciona el idioma</h2>
+            <button class="language-option" data-idioma="es">Español</button>
+            <button class="language-option" data-idioma="en">English</button>
+        </div>
+    </div>
+    <script src="../JS/dropdownMenuScript.js"></script>
+    <script src="../JS/tieneTokenScript.js"></script>
     <script src="../JS/cerrarSesionScript.js"></script>
+    <script src="../JS/scriptLikes.js"></script>
 </body>
 </html>
