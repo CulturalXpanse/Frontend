@@ -1,171 +1,309 @@
 <!DOCTYPE html>
-<html lang="es">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="CulteX es una plataforma diseñada para facilitar el intercambio cultural entre personas de diversas partes del mundo.">
     <meta name="keywords" content="CulteX,red social,intercambio cultural,culturas,tradiciones,costumbres,conectar personas">
     <meta name="author" content="Kevin Pereira, Xanders Ibarra, Martin Martinez, Juan Curbelo">
-    <link rel="stylesheet" href="../CSS/main.css">
-    <link rel="stylesheet" href="../CSS/posts.css">
-    <link rel="stylesheet" href="../CSS/footer.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title data-trad="titulo">CulteX | Inicio</title>
+    <link rel="stylesheet" href="../CSS/pagina.css">
+    <link rel="stylesheet" href="../CSS/colores.css">
+    <link rel="stylesheet" href="../CSS/scrollbar.css">
     <link rel="icon" href="../Img/IconoPaginaCulteX.png" type="image/icon type">
-    <title>CulteX | Inicio</title>
+    <script src="https://kit.fontawesome.com/b2b9fd891f.js" crossorigin="anonymous"></script>
 </head>
-
 <body>
-    <header class="header">
-        <div class="containerDashboard">
-            <div class="perfil">
-                <a href="../HTML/perfil.html"><img src="../Img/imagenPerfil.png" alt="Foto" class="perfil-img"></a>
-                <a class="perfil-nombre" href="../HTML/perfil.html"><span>Kevin</span></a>
+    <header>
+        <nav>
+            <div class="nav-left">
+                <a href="../HTML/inicio.html"><img src="../Img/LetrasCulteXSinFondo.png" class="logo" alt="Logo"></a>
+                <div class="search-box">
+                    <img src="../Img/search.png" alt="Imagen lupa">
+                    <input type="text" id="buscarInput" data-trad="buscar" placeholder="Buscar...">
+                </div>
             </div>
-            <div class="containerDashboard">
-                <a href="../HTML/inicio.html"><img class="logo" src="../Img/LogoCulteXLetrasBlancasChica.png" alt="Logo"></a>
-            </div>
-            <div class="containerDashboard">
-                <input type="text" placeholder="Buscar..." class="search-bar">
-                <a href="publicar();" class="post-button">Publicar</a>
-                <a href="#" class="notification-icon"><i class="fas fa-bell"></i></a>
-            </div>
-            <nav class="navMenu">
-                <ul class="botonMenu">
-                    <li class="dropdown">
-                        <a href="#" class="dropbtn"><i class="fa-solid fa-bars"></i></a>
-                        <div class="dropdown-content">
-                            <a href="../HTML/perfil.html"><i class="fas fa-user-circle"></i>Perfil</a>
-                            <a href="../HTML/bloqueados.html"><i class="fas fa-ban"></i>Bloqueados</a>
-                            <a href="../HTML/configuracion.html"><i class="fas fa-cogs"></i>Configuración</a>
-                            <a href="../HTML/idioma.html"><i class="fas fa-globe"></i>Idioma</a>
-                            <a href="../HTML/ayuda.html"><i class="fas fa-question-circle"></i>Ayuda</a>
-                            <a id="logout-button" style="cursor: pointer;"><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a>
+            <div class="nav-right">
+                <ul>
+                    <li>
+                        <i class="fa-solid fa-plus fa-xl post-button" id="post-icon" alt="Boton Post"></i>
+                    </li>
+                    <li>
+                        <i class="fa-regular fa-bell fa-xl" id="notification-icon" onclick="notificationMenuToggle()" alt="Boton Notificaciones"></i>
+                        <div id="notification-menu" class="notification-menu">
+                            <div class="notification-item">
+                                <p data-trad="noNotificaciones">No tienes nuevas notificaciones.</p>
+                            </div>
+                            <!-- Puedes agregar más notificaciones aquí -->
+                            <div class="notification-item">
+                                <p>Usuario te envio solicitud de amistad.</p>
+                            </div>
+                            <div class="notification-item">
+                                <p>Usuario le dio like a tu post.</p>
+                            </div>
+                            <div class="notification-item">
+                                <p>Usuario entro al Grupo</p>
+                            </div>
                         </div>
                     </li>
                 </ul>
-            </nav>
-        </div>
+                <div class="nav-user-icon online" onclick="settingsMenuToggle()">
+                    <img src="../Img/perfilDefault.png" alt="Imagen de Perfil">
+                </div>
+                <div id="dark-btn" class="dark-btn-on">
+                    <span></span>
+                </div>
+            </div>
+            <!---------settings-menu--------->
+            <div class="settings-menu">
+                <div class="settings-menu-inner">
+                    <div class="user-profile">
+                        <img src="../Img/perfilDefault.png">
+                        <div>
+                            <p>Usuario</p>
+                            <a href="../HTML/perfil.html" data-trad="perfil">Perfil</a>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="settings-links">
+                        <a id="openModal" class="idiomaBoton"><i class="fa-solid fa-earth-americas"></i><p data-trad="idioma">Idioma</p><img src="../Img/arrow.png" width="10px"></a>
+                    </div>
+                    <div class="settings-links">
+                        <a href="../HTML/centroDeAyuda.html"><i class="fa-solid fa-circle-question fa-2x1"></i><p data-trad="centroAyuda">Centro de ayuda</p><img src="../Img/arrow.png" width="10px"></a>
+                    </div>
+                    <div class="settings-links">
+                        <a id="logout-button" style="cursor: pointer;"><i class="fa-solid fa-arrow-right-from-bracket fa-2x1"></i><p data-trad="cerrarSesion">Cerrar sesión</p><img src="../Img/arrow.png" width="10px"></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
     </header>
-
-    <aside class="left-sidebar">
-        <ul class="listas">
-            <h2>Grupos</h2>
-            <li><a href="#"><img src="../Img/perfilDefault.png" alt="Foto de Grupo"> Grupo 1</a></li>
-            <li><a href="#"><img src="../Img/perfilDefault.png" alt="Foto de Grupo"> Grupo 2</a></li>
-            <li><a href="#"><img src="../Img/perfilDefault.png" alt="Foto de Grupo"> Grupo 3</a></li>
-            <input type="text" placeholder="Buscar grupos..." class="search-bar-sidebar">
-        </ul>
-    </aside>
-
-    <aside class="right-sidebar">
-        <ul class="listas">
-            <h2>Amigos</h2>
-            <li><a href="#"><img src="../Img/perfilDefault.png" alt="Foto de Amigos"> Amigo 1</a></li>
-            <li><a href="#"><img src="../Img/perfilDefault.png" alt="Foto de Amigos"> Amigo 2</a></li>
-            <li><a href="#"><img src="../Img/perfilDefault.png" alt="Foto de Amigos"> Amigo 3</a></li>
-            <input type="text" placeholder="Buscar amigos..." class="search-bar-sidebar">
-        </ul>
-    </aside>
-
-<main class="main-content">
-    <div class="feed">
-        <div class="post" data-post-id="1">
-            <div class="post-header">
-                <img src="../Img/LogoCulteXConFondo.png" alt="Foto de perfil" class="profile-pic">
-                <div class="post-info">
-                    <span class="user-name">CulteX Oficial</span>
-                    <span class="post-date">Publicado el 31/07/2024 a las 20:48</span>
+    <div class="container">
+        <!---------left-sidebar--------->
+        <div class="left-sidebar">
+            <div class="imp-links">
+                <a href="#"><i class="fa-solid fa-user-group"></i><p data-trad="amigos">Amigos</p></a>
+                <div class="online-list">
+                    <div class="online">
+                        <img src="../Img/perfilDefault.png">
+                    </div>
+                    <p>Amigo 1</p>
                 </div>
-                <div class="post-options"><i class="fas fa-ellipsis-h"></i>
+                <div class="online-list">
+                    <div class="online">
+                        <img src="../Img/perfilDefault.png">
+                    </div>
+                    <p>Amigo 2</p>
+                </div>
+                <div class="online-list">
+                    <div class="offline">
+                        <img src="../Img/perfilDefault.png">
+                    </div>
+                    <p>Amigo 3</p>
                 </div>
             </div>
-            <div class="post-content">
-                <p>Texto de ejemplo del post.</p>
-                <div class="post-media">
-                    <img src="../Img/LogoCulteXConFondo.png" alt="Imagen o video">
+            <div class="footer">
+                <p>&copy; 2024 CulteX, CulturalXpanse. <span data-trad="derechos">Todos los derechos reservados.</span></p>
+            </div>
+        </div>
+        <!---------main-content--------->
+        <div class="main-content">
+        
+        <!---------POST-DINAMICOS--------->
+        <div class="post-container">
+            <div class="post-row">
+                <div class="user-profile">
+                    <img src="../Img/perfilDefault.png">
+                    <div>
+                        <p id="nombreUsuario">Usuario</p>
+                        <span id="fechaPublicacion">Junio 24 2024, 13:40 pm</span>
+                    </div>
+                </div>
+                <div class="menuDots">
+                    <a class="dots" style="cursor: pointer;"><i class="fa-solid fa-ellipsis"></i></a>
+                    <div class="dropdown-contentDots">
+                        <a href="../HTML/perfil.html">Ver perfil</a>
+                    </div>
                 </div>
             </div>
-            <div class="post-actions">
-                <div class="post-ratings-container">
-                    <div class="post-rating">
-                        <span class="post-rating-button material-icons"><i class="fa-solid fa-thumbs-up"></i></span>
-                        <span class="post-rating-count">0</span>
-                    </div>
-                    <input type="text" placeholder="Comentario . . ." class="comment-input">
-                    <button class="comment-button">Enviar</button>
+            <p class="post-text">Titulo</p>
+            <img src="../Img/feed-image-1.png" class="post-img" alt="Imagen Post">
+            <div class="post-row">
+                <div class="activity-icons">
+                    <div><i class="fa-solid fa-thumbs-up fa-xl"></i>120</div>
+                    <div><i class="fa-solid fa-comment fa-xl"></i>10</div>
+                    <div><i class="fa-solid fa-share fa-xl"></i></div>
                 </div>
-                <div class="post-comments">
-                    <div class="comment">
-                        <img src="../Img/perfilDefault.png" alt="Foto de perfil" class="profile-pic">
-                        <span>¡Qué buen ícono!</span>
-                    </div>
-                    <div class="comment">
-                        <img src="../Img/perfilDefault.png" alt="Foto de perfil" class="profile-pic">
-                        <span>Zarpado ese ícono</span>
-                    </div>
-                </div>
-                <button class="show-more-comments">Mostrar más...</button>
             </div>
         </div>
 
-        <div class="post" data-post-id="2">
-            <div class="post-header">
-                <img src="../Img/LogoCulteXConFondo.png" alt="Foto de perfil" class="profile-pic">
-                <div class="post-info">
-                    <span class="user-name">CulteX Oficial</span>
-                    <span class="post-date">Publicado el 31/07/2024 a las 20:48</span>
+        <div class="post-container">
+            <div class="post-row">
+                <div class="user-profile">
+                    <img src="../Img/perfilDefault.png">
+                    <div>
+                        <p id="nombreUsuario">Usuario</p>
+                        <span id="fechaPublicacion">Junio 24 2024, 13:40 pm</span>
+                    </div>
                 </div>
-                <div class="post-options"><i class="fas fa-ellipsis-h"></i>
+                <div class="menuDots">
+                    <a class="dots" style="cursor: pointer;"><i class="fa-solid fa-ellipsis"></i></a>
+                    <div class="dropdown-contentDots">
+                        <a href="../HTML/perfil.html">Ver perfil</a>
+                    </div>
                 </div>
             </div>
-            <div class="post-content">
-                <p>Texto de ejemplo del post.</p>
-                <div class="post-media">
-                    <img src="../Img/perro.jpg" alt="Imagen o video">
+            <p class="post-text">Titulo</p>
+            <img src="../Img/feed-image-2.png" class="post-img" alt="Imagen Post">
+            <div class="post-row">
+                <div class="activity-icons">
+                    <div><i class="fa-solid fa-thumbs-up fa-xl"></i>120</div>
+                    <div><i class="fa-solid fa-comment fa-xl"></i>10</div>
+                    <div><i class="fa-solid fa-share fa-xl"></i></div>
                 </div>
-            </div>
-            <div class="post-actions">
-                <div class="post-ratings-container">
-                    <div class="post-rating">
-                        <span class="post-rating-button material-icons"><i class="fa-solid fa-thumbs-up"></i></span>
-                        <span class="post-rating-count">0</span>
-                    </div>
-                    <input type="text" placeholder="Comentario . . ." class="comment-input">
-                    <button class="comment-button">Enviar</button>
-                </div>
-                <div class="post-comments">
-                    <div class="comment">
-                        <img src="../Img/perfilDefault.png" alt="Foto de perfil" class="profile-pic">
-                        <span>¡Qué buen ícono!</span>
-                    </div>
-                    <div class="comment">
-                        <img src="../Img/perfilDefault.png" alt="Foto de perfil" class="profile-pic">
-                        <span>Zarpado ese ícono</span>
-                    </div>
-                </div>
-                <button class="show-more-comments">Mostrar más...</button>
             </div>
         </div>
-    </div>
-</main>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 CulteX, CulturalXpanse. Todos los derechos reservados.</p>
+        <div class="post-container">
+            <div class="post-row">
+                <div class="user-profile">
+                    <img src="../Img/perfilDefault.png">
+                    <div>
+                        <p id="nombreUsuario">Usuario</p>
+                        <span id="fechaPublicacion">Junio 24 2024, 13:40 pm</span>
+                    </div>
+                </div>
+                <div class="menuDots">
+                    <a class="dots" style="cursor: pointer;"><i class="fa-solid fa-ellipsis"></i></a>
+                    <div class="dropdown-contentDots">
+                        <a href="../HTML/perfil.html">Ver perfil</a>
+                    </div>
+                </div>
+            </div>
+            <p class="post-text">Titulo</p>
+            <img src="../Img/feed-image-3.png" class="post-img" alt="Imagen Post">
+            <div class="post-row">
+                <div class="activity-icons">
+                    <div><i class="fa-solid fa-thumbs-up fa-xl"></i>120</div>
+                    <div><i class="fa-solid fa-comment fa-xl"></i>10</div>
+                    <div><i class="fa-solid fa-share fa-xl"></i></div>
+                </div>
+            </div>
         </div>
-    </footer>
-    <div id="languageModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2 data-trad="seleccionIdioma">Selecciona el idioma</h2>
-            <button class="language-option" data-idioma="es">Español</button>
-            <button class="language-option" data-idioma="en">English</button>
+
+        <div class="post-container">
+            <div class="post-row">
+                <div class="user-profile">
+                    <img src="../Img/perfilDefault.png">
+                    <div>
+                        <p id="nombreUsuario">Usuario</p>
+                        <span id="fechaPublicacion">Junio 24 2024, 13:40 pm</span>
+                    </div>
+                </div>
+                <div class="menuDots">
+                    <a class="dots" style="cursor: pointer;"><i class="fa-solid fa-ellipsis"></i></a>
+                    <div class="dropdown-contentDots">
+                        <a href="../HTML/perfil.html">Ver perfil</a>
+                    </div>
+                </div>
+            </div>
+            <p class="post-text">Titulo</p>
+            <img src="../Img/feed-image-4.png" class="post-img" alt="Imagen Post">
+            <div class="post-row">
+                <div class="activity-icons">
+                    <div><i class="fa-solid fa-thumbs-up fa-xl"></i>120</div>
+                    <div><i class="fa-solid fa-comment fa-xl"></i>10</div>
+                    <div><i class="fa-solid fa-share fa-xl"></i></div>
+                </div>
+            </div>
         </div>
-    </div>
-    <script src="../JS/dropdownMenuScript.js"></script>
-    <script src="../JS/tieneTokenScript.js"></script>
-    <script src="../JS/cerrarSesionScript.js"></script>
-    <script src="../JS/scriptLikes.js"></script>
+        </div>
+        <!---------right-sidebar--------->
+        <div class="right-sidebar">
+            <div class="sidebar-title">
+                <h4 data-trad="eventos">Eventos</h4>
+                <a href="#" data-trad="verTodos">Ver todos</a>
+            </div>
+
+            <div class="event">
+                <div class="left-event">
+                    <h3>18</h3>
+                    <span data-trad="mesEvento">Marzo</span>
+                </div>
+                <div class="right-event">
+                    <h4>Evento 1</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Ubicacion</p>
+                    <a href="#" data-trad="masInfo">Mas info</a>
+                </div>
+            </div>
+                <div class="event">
+                    <div class="left-event">
+                        <h3>22</h3>
+                        <span>Marzo</span>
+                    </div>
+                    <div class="right-event">
+                        <h4 data-trad="mesEvento">Evento 2</h4>
+                        <p><i class="fas fa-map-marker-alt"></i> Ubicacion</p>
+                        <a href="#" data-trad="masInfo">Mas info</a>
+                    </div>
+                </div>
+                <div class="linea"></div>
+                <div class="friends">
+                    <h4><i class="fa-solid fa-people-group"></i><p data-trad="grupos">Grupos</p></h4>
+                </div>
+                <div class="group-list">
+                    <div class="group">
+                        <img src="../Img/perfilDefault.png" alt="Grupo 1">
+                        <p>Grupo 1</p>
+                    </div>
+                    <div class="group">
+                        <img src="../Img/perfilDefault.png" alt="Grupo 2">
+                        <p>Grupo 2</p>
+                    </div>
+                    <div class="group">
+                        <img src="../Img/perfilDefault.png" alt="Grupo 3">
+                        <p>Grupo 3</p>
+                    </div>
+                </div>
+            <div class="linea"></div>
+            <div class="advertisement">
+                <h4 data-trad="publicidad">Publicidad</h4>
+        </div>
+        <img src="../Img/advertisement.png" class="sidebar-ads" alt="Publicidad">
+        </div>
+        <div id="publish-modal" class="modalPost">
+            <div class="modal-contentPost">
+                <span class="closePosteando">&times;</span>
+                <h2 data-trad="crearPost">Crear nuevo post</h2>
+                <form>
+                    <textarea id="postContent" placeholder="Escribe tu post aquí..." rows="4"></textarea>
+                    <p class="requiereSubir" data-trad="requiereFotoVideo">Se requiere subir una foto o video</p>
+                    <div class="custom-file-upload">
+                        <span id="file-name" data-trad="ningunArchivoSelec">Ningún archivo seleccionado</span>
+                        <label for="fileInput">
+                            <button type="button"><i class="fa-solid fa-upload fa-2x1"></i></button>
+                        </label>
+                        <input type="file" id="fileInput" style="display: none;">
+                    </div>
+                    <div class="modal-actions">
+                        <button id="submit-post" data-trad="publicar">Publicar</button>
+                        <button class="cancel-post" data-trad="cancelar">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="languageModal" class="modalIdioma">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 data-trad="seleccionIdioma">Selecciona el idioma</h2>
+                <button class="language-option" data-idioma="es">Español</button>
+                <button class="language-option" data-idioma="en">English</button>
+            </div>
+        </div>
+<script src="../JS/dropdownMenu.js"></script>
+<script src="../JS/postBoton.js"></script>
+<script src="../JS/idioma.js"></script>
+<script src="../JS/idiomaAlmacenamiento.js"></script>
+<script src="../JS/cerrarSesion.js"></script>
 </body>
 </html>

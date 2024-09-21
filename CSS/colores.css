@@ -1,0 +1,31 @@
+:root {
+    --color1: #363635;
+    --color2: #FFFFFF;
+    --color3: #B0FE76;
+    --color4: #F0F0F5;
+    --color6: #81E979;
+    --color5: #6C757D;
+    --color7: #FFC107;
+    --color8: #8FBB91;
+    --primary-color: #007bff;
+    --error-color: red;
+    /* Diferencia de colores */
+    --body-color: #F0F0F5;
+    --nav-color: #363635;
+    --bg-color: #fff;
+    --letras: #626262;
+    --color-iconos: #363635;
+    --nav-iconos: #fff;
+    --circulo-perfil: #000;
+}
+
+.dark-theme{
+    --body-color: #2c2c2c;
+    --nav-color: #363635;
+    --bg-color: #363636;
+    --letras: #fff;
+    --event-day: #5c5c5c;
+    --color-iconos: #B0FE76;
+    --nav-iconos: #fff;
+    --circulo-perfil: #fff;
+}

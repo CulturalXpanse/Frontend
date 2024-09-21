@@ -68,6 +68,9 @@
                     </div>
                     <hr>
                     <div class="settings-links">
+                        <a href="../HTML/configuracion.html"><i class="fa-solid fa-gears"></i><p data-trad="configuracion">Configuración</p><img src="../Img/arrow.png" width="10px"></a>
+                    </div>
+                    <div class="settings-links">
                         <a id="openModal" class="idiomaBoton"><i class="fa-solid fa-earth-americas"></i><p data-trad="idioma">Idioma</p><img src="../Img/arrow.png" width="10px"></a>
                     </div>
                     <div class="settings-links">
@@ -93,8 +96,7 @@
                 <div class="profile-info">
                     <h1>Nombre de usuario</h1>
                     <h3>Nombre completo</h3>
-                    <h4>Cuidad - Pais</h4>
-                    <p class="user-bio">Descripcion/Biografia</p>
+                    <p class="user-bio">Más de 10 años subiendo vídeo diario de Clash of Clans, Clash Royale, Brawl Stars y otros juegos de móvil.</p>
                     <button id="openModalEditPerfilBtn" class="edit-profile-btn">Editar Perfil</button>
                 </div>
         </section>
@@ -102,7 +104,7 @@
         <section class="profile-details">
                 <div class="tabs">
                     <button class="tab-button active" data-tab="posts">Posts</button>
-                    <button class="tab-button" data-tab="about">Grupos</button>
+                    <button class="tab-button" data-tab="about">Acerca de</button>
                     <button class="tab-button" data-tab="friends">Amigos</button>
                 </div>
 
@@ -204,12 +206,12 @@
                 </div>
 
             <div class="tab-content" id="about">
-                <h3 data-trad="grupos">Grupos</h3>
-                <p>Lista de grupos del usuario.</p>
+                <h3>Acerca de</h3>
+                <p>Información detallada sobre el usuario.</p>
             </div>
 
             <div class="tab-content" id="friends">
-                <h3 data-trad="amigos">Amigos</h3>
+                <h3>Amigos</h3>
                 <p>Lista de amigos del usuario.</p>
             </div>
         </section>
@@ -220,19 +222,19 @@
                 <span class="closeEditarPerfil">&times;</span>
                 <h2>Editar Perfil</h2>
                 <form id="editProfileForm">
-                    <label for="username" data-trad="NombreUsuario">Nombre de usuario</label>
+                    <label for="username">Nombre de usuario</label>
                     <input type="text" id="username" name="username" value="" required>
 
-                    <label for="username" data-trad="NombreCompleto">Nombre completo</label>
+                    <label for="username">Nombre completo</label>
                     <input type="text" id="username" name="username" value="" required>
 
-                    <label for="bio" data-trad="biografia"">Biografía</label>
-                    <textarea id="bio" name="bio" rows="4" required></textarea>
+                    <label for="bio">Biografía</label>
+                    <textarea id="bio" name="bio" rows="4" required>Más de 10 años subiendo vídeo diario de Clash of Clans, Clash Royale, Brawl Stars y otros juegos de móvil.</textarea>
 
-                    <label for="profilePicture" data-trad="ImagenPerfil">Imagen de perfil</label>
+                    <label for="profilePicture">Imagen de perfil</label>
                     <input type="file" id="profilePicture" name="profilePicture">
 
-                    <button type="submit" class="saveEdit-btn" data-trad="guardar">Guardar cambios</button>
+                    <button type="submit" class="saveEdit-btn">Guardar cambios</button>
                 </form>
             </div>
         </div>

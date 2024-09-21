@@ -7,8 +7,10 @@
     <meta name="keywords" content="CulteX,red social,intercambio cultural,culturas,tradiciones,costumbres,conectar personas">
     <meta name="author" content="Kevin Pereira, Xanders Ibarra, Martin Martinez, Juan Curbelo">
     <title data-trad="titulo">CulteX | Inicio de Sesión</title>
-    <link rel="stylesheet" type="text/css" href="../CSS/login.css">
-    <link rel="stylesheet" href="../CSS/IdiomaModal.css">
+    <link rel="stylesheet" href="../CSS/login.css">
+    <link rel="stylesheet" href="../CSS/colores.css">
+    <link rel="stylesheet" href="../CSS/scrollbar.css">
+    <link rel="stylesheet" href="../CSS/idiomaModal.css">
     <link rel="icon" href="../Img/IconoPaginaCulteX.png" type="image/icon type">
 </head>
 <body>
@@ -25,7 +27,6 @@
                 <span id="mensaje-error" class="mensaje-error" style="display: none;"></span>
                 <button type="submit" data-trad="iniciarSesion">Iniciar sesión</button>
                 <div class="button-group">
-                    <a href="../HTML/olvidarContrasenia.html" class="button olvidar-contrasenia" data-trad="olvidarContrasenia">¿Olvidaste la contraseña?</a>
                     <a href="../HTML/register.html" class="button registrarse" data-trad="registrarse">Regístrate</a>
                 </div>
             </form>            
@@ -54,7 +55,7 @@
             </div>
         </div>
     </footer>
-    <div id="languageModal" class="modal">
+    <div id="languageModal" class="modalIdioma">
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2 data-trad="seleccionIdioma">Selecciona el idioma</h2>
@@ -62,8 +63,8 @@
             <button class="language-option" data-idioma="en">English</button>
         </div>
     </div>
-    <script src="../JS/loginScript.js"></script>
-    <script src="../JS/idiomaScript.js"></script>
-    <script src="../JS/cargarIdioma.js"></script>
+    <script src="../JS/login.js"></script>
+    <script src="../JS/idioma.js"></script>
+    <script src="../JS/idiomaAlmacenamiento.js"></script>
 </body>
 </html>

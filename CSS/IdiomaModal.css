@@ -1,16 +1,4 @@
-:root {
-    --color1: #363635;
-    --color2: #FFFFFF;
-    --color3: #B0FE76;
-    --color4: #81E979;
-    --color5: #8FBB91;
-    --color6: #dfdfdf;
-    --color7: #4CAF50;
-    --primary-color: #007bff;
-    --error-color: red;
-}
-
-.modal {
+.modalIdioma {
     display: none;
     position: fixed;
     z-index: 1;
@@ -24,7 +12,8 @@
 }
 
 .modal-content {
-    background-color: #fff;
+    background-color: var(--color2);
+    color: var(--color1);
     margin: 5% auto;
     padding: 20px;
     border: 1px solid #888;
@@ -35,7 +24,7 @@
 }
 
 .close {
-    color: #aaa;
+    color: var(--color1);
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -49,14 +38,15 @@
 }
 
 .modal-content button {
-    background-color: #B0FE76;
+    background-color: var(--color3);
     border: none;
-    color: #000;
+    color: var(--color1);
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+    font-weight: bold;
     margin: 10px 5px;
     cursor: pointer;
     border-radius: 5px;
@@ -64,6 +54,7 @@
 }
 
 .modal-content button:hover {
-    background-color: #9dce65;
+    color: var(--color1);
+    background-color: var(--color6);
     transform: scale(1.05);
 }

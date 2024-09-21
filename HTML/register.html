@@ -7,8 +7,10 @@
     <meta name="keywords" content="CulteX,red social,intercambio cultural,culturas,tradiciones,costumbres,conectar personas">
     <meta name="author" content="Kevin Pereira, Xanders Ibarra, Martin Martinez, Juan Curbelo">
     <title data-trad="titulo">CulteX | Registrarse</title>
-    <link rel="stylesheet" type="text/css" href="../CSS/register.css">
-    <link rel="stylesheet" href="../CSS/IdiomaModal.css">
+    <link rel="stylesheet" href="../CSS/register.css">
+    <link rel="stylesheet" href="../CSS/colores.css">
+    <link rel="stylesheet" href="../CSS/scrollbar.css">
+    <link rel="stylesheet" href="../CSS/idiomaModal.css">
     <link rel="icon" href="../Img/IconoPaginaCulteX.png" type="image/icon type">
 </head>
 <body>
@@ -18,17 +20,17 @@
                 <img src="../Img/LogoCulteXLetrasNegrasChica.png" alt="Logo"> 
             </div>
             <form class="register-form">
-                <label for="Nombre_Completo" data-trad="nombreCompleto">Nombre Completo</label>
+                <label for="Nombre_Completo" data-trad="nombreCompleto">Nombre completo</label>
                 <input type="text" id="Nombre_Completo" required>
-                <label for="Nombre_de_Usuario" data-trad="nombreUsuario">Nombre de Usuario</label>
+                <label for="Nombre_de_Usuario" data-trad="nombreUsuario">Nombre de usuario</label>
                 <input type="text" id="Nombre_de_Usuario" required>
                 <label for="email" data-trad="correo">Correo electrónico</label>
                 <input type="email" id="email" required>
                 <label for="password" data-trad="contrasena">Contraseña</label>
                 <input type="password" id="password" required>
-                <label for="repetir_password" data-trad="repetirContrasena">Repetir Contraseña</label>
+                <label for="repetir_password" data-trad="repetirContrasena">Repetir contraseña</label>
                 <input type="password" id="repetir_password" required>
-                <label for="Fecha_De_Nacimiento" data-trad="fechaNacimiento">Fecha de Nacimiento</label>
+                <label for="Fecha_De_Nacimiento" data-trad="fechaNacimiento">Fecha de nacimiento</label>
                 <input type="date" id="Fecha_De_Nacimiento" required>
                 <span id="mensaje-error" class="mensaje-error" style="display: none;"></span>
                 <button type="submit" data-trad="registrarse">Registrarse</button>
@@ -61,7 +63,15 @@
             </div>
         </div>
     </footer>
-    <div id="languageModal" class="modal">
+    <div id="registroExitosoModal" class="modalRegistro">
+        <div class="modal-contentRegistro">
+            <span class="closeRegistro">&times;</span>
+            <h2>¡Registro Exitoso!</h2>
+            <p>Te has registrado correctamente en CulteX. Bienvenido/a a la comunidad.</p>
+            <button id="cerrarModalRegistro" class="button">Aceptar</button>
+        </div>
+    </div>
+    <div id="languageModal" class="modalIdioma">
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2 data-trad="seleccionIdioma">Selecciona el idioma</h2>
@@ -69,8 +79,8 @@
             <button class="language-option" data-idioma="en">English</button>
         </div>
     </div>
-    <script src="../JS/registerScript.js"></script>
-    <script src="../JS/idiomaScript.js"></script>
-    <script src="../JS/cargarIdioma.js"></script>
+    <script src="../JS/register.js"></script>
+    <script src="../JS/idioma.js"></script>
+    <script src="../JS/idiomaAlmacenamiento.js"></script>
 </body>
 </html>
