@@ -1,35 +1,46 @@
-document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('login-form').addEventListener('submit', async (e) => {
-        e.preventDefault();
 
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-    
-        try {
-            const response = await fetch('http://localhost:8000/api/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ 
-                    Correo: email,
-                    password: password,
-                    grant_type: 'password',
-                    client_id : "1",
-                    client_secret : "yUr2KXmywzZQECxyc2VHqNBcn1lbH7VSauwQqFAp",
-                })
-            });
-    
-            if (response.ok) {
-                const data = await response.json();
-                localStorage.setItem('token', data.access_token);
-                window.location.href = 'inicio.html';
-            } else {
-                const error = await response.json();
-                alert(error.message);
-            }
-        } catch (error) {
-            console.error('Error al iniciar sesión:', error);
+$(document).ready(function(){  
+    var token = localStorage.getItem("accessToken");
+    if(token != null)
+        $(location).prop('href', 'inicio.html');
+
+    $("#btnLogin").click(function(){
+        var username = $("#username").val();
+        var password = $("#password").val();
+        
+        var data = {
+            "username": username,
+            "password": password,
+            "grant_type" : "password",
+            "client_id" : 1,
+            "client_secret" : "VDGDvPLbiKTJo87tGa6V19BrerZHkqLkotOlamYN"
         }
+
+        jQuery.ajax({  
+            url: 'http://localhost:8000/oauth/token',  
+            type: 'POST',
+            headers: {
+                "Accept" : "application/json",
+                "Content-Type" : "application/json",
+            },
+            data: JSON.stringify(data),
+            
+            success: function(resultado) {  
+                localStorage.setItem("accessToken", resultado.access_token);
+                $(location).prop('href', 'inicio.html');
+            
+                
+            },
+            
+            error: function(resultado){
+                if(resultado.responseJSON.error == "invalid_grant")
+                    $("#mensaje").html(resultado.responseJSON.message);
+                if(resultado.responseJSON.error == "invalid_request")
+                    $("#mensaje").html(resultado.responseJSON.hint);
+                
+            } 
+            
+        });  
     });
-});
+    
+});  

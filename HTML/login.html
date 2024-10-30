@@ -1,54 +1,43 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="CulteX es una plataforma diseñada para facilitar el intercambio cultural entre personas de diversas partes del mundo.">
-    <meta name="keywords" content="CulteX,red social,intercambio cultural,culturas,tradiciones,costumbres,conectar personas">
-    <meta name="author" content="Kevin Pereira, Xanders Ibarra, Martin Martinez, Juan Curbelo">
-    <title data-trad="titulo">CulteX | Inicio de Sesión</title>
-    <link rel="stylesheet" href="../CSS/login.css">
-    <link rel="stylesheet" href="../CSS/colores.css">
-    <link rel="stylesheet" href="../CSS/scrollbar.css">
-    <link rel="stylesheet" href="../CSS/idiomaModal.css">
-    <link rel="icon" href="../Img/IconoPaginaCulteX.png" type="image/icon type">
-</head>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="CulteX es una plataforma diseñada para facilitar el intercambio cultural entre personas de diversas partes del mundo.">
+        <meta name="keywords" content="CulteX,red social,intercambio cultural,culturas,tradiciones,costumbres,conectar personas">
+        <meta name="author" content="Kevin Pereira, Xanders Ibarra, Martin Martinez, Juan Curbelo">
+        <title data-trad="titulo">CulteX | Inicio de Sesión</title>
+        <link rel="stylesheet" href="../CSS/login.css">
+        <link rel="stylesheet" href="../CSS/colores.css">
+        <link rel="stylesheet" href="../CSS/scrollbar.css">
+        <link rel="stylesheet" href="../CSS/idiomaModal.css">
+        <link rel="icon" href="../Img/IconoPaginaCulteX.png" type="image/icon type">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+        <script src="../JS/login.js"></script>
+    </head>
 <body>
     <div class="container">
         <div class="center-section">
             <div class="logo">
                 <img src="../Img/LogoCulteXLetrasNegrasChica.png" alt="Logo"> 
             </div>
-            <form id="login-form" class="login-form">
+            <div class="login-form">
                 <label for="email" data-trad="correo">Correo electrónico</label>
-                <input type="email" id="email" name="Correo" required>
+                <input type="email" id="username" name="Correo" required>
                 <label for="password" data-trad="contrasena">Contraseña</label>
                 <input type="password" id="password" name="password" required>
                 <span id="mensaje-error" class="mensaje-error" style="display: none;"></span>
-                <button type="submit" data-trad="iniciarSesion">Iniciar sesión</button>
+                <div id="mensaje"></div>
+                <button type="submit" id="btnLogin" data-trad="iniciarSesion">Iniciar sesión</button>
                 <div class="button-group">
                     <a href="../HTML/register.html" class="button registrarse" data-trad="registrarse">Regístrate</a>
                 </div>
-            </form>            
+            </div> 
         </div>
     </div>
     <footer>
         <div class="footer-content">
             <a href="#" class="button" id="openModal" data-trad="cambiarIdioma">Cambiar idioma</a>
-            <div class="social-icons">
-                <a href="https://www.instagram.com" target="_blank">
-                    <img src="../Img/instagram.png" alt="Instagram">
-                </a>
-                <a href="https://www.facebook.com" target="_blank">
-                    <img src="../Img/facebook.png" alt="Facebook">
-                </a>
-                <a href="https://www.twitter.com" target="_blank">
-                    <img src="../Img/twitter.png" alt="X">
-                </a>
-                <a href="https://www.tiktok.com" target="_blank">
-                    <img src="../Img/tik-tok.png" alt="TikTok">
-                </a>
-            </div>
             <div class="footer-legal">
                 <span>&copy; 2024 CulteX,</span> <img src="../Img/LogoCulturalXpanseSinFondoBlanco.png" alt="Logo Empresa">  <span data-trad="derechos">Todos los derechos reservados.</span>
                 <a href="../HTML/centroDeAyuda.html" data-trad="centroAyuda">Centro de ayuda</a>
@@ -63,7 +52,6 @@
             <button class="language-option" data-idioma="en">English</button>
         </div>
     </div>
-    <script src="../JS/login.js"></script>
     <script src="../JS/idioma.js"></script>
     <script src="../JS/idiomaAlmacenamiento.js"></script>
 </body>

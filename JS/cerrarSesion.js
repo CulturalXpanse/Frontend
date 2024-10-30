@@ -1,28 +1,27 @@
-document.getElementById('logout-button').addEventListener('click', async () => {
-    const token = localStorage.getItem('token');
-    
-    if (!token) {
-        window.location.href = 'login.html';
-        return;
-    }
+$(document).ready(function(){  
+    var token = localStorage.getItem("accessToken");
+    if(token == null)
+        $(location).prop('href', 'login.html');
 
-    try {
-        const response = await fetch('http://localhost:8000/api/logout', {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            }
+    $("#logout-button").click(function(){
+            jQuery.ajax({  
+                url: 'http://localhost:8000/api/logout',  
+                type: 'GET',
+                headers: {
+                    "Accept" : "application/json",
+                    "Content-Type" : "application/json",
+                    "Authorization" : "Bearer " + token
+                },
+                success: function(resultado) {  
+                    localStorage.removeItem("accessToken");
+                    $(location).prop('href', 'login.html');    
+                },
+                
+                error: function(resultado){
+                    alert("Hubo un error");
+                } 
+                
+            });  
+
         });
-
-        if (response.ok) {
-            localStorage.removeItem('token');
-            window.location.href = 'login.html';
-        } else {
-            const errorText = await response.text();
-            console.error('Error al cerrar sesión:', errorText);
-        }
-    } catch (error) {
-        console.error('Error en la solicitud:', error);
-    }
-});
+});  

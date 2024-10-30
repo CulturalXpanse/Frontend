@@ -8,11 +8,11 @@
     <meta name="author" content="Kevin Pereira, Xanders Ibarra, Martin Martinez, Juan Curbelo">
     <title data-trad="titulo">CulteX | Perfil</title>
     <link rel="stylesheet" href="../CSS/pagina.css">
+    <link rel="stylesheet" href="../CSS/perfil.css">
     <link rel="stylesheet" href="../CSS/colores.css">
     <link rel="stylesheet" href="../CSS/scrollbar.css">
     <link rel="stylesheet" href="../CSS/idiomaModal.css">
     <link rel="icon" href="../Img/IconoPaginaCulteX.png" type="image/icon type">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/b2b9fd891f.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -49,25 +49,21 @@
                         </div>
                     </li>
                 </ul>
-                <!---------Imagen de Perfil--------->
                 <div class="nav-user-icon online" onclick="settingsMenuToggle()">
-                    <img class="fotoPerfil" alt="Foto de Perfil" />
+                    <img src="../Img/perfilDefault.png" alt="Imagen de Perfil">
                 </div>
-            </div>
-            <!---------Menu Principal--------->
-            <div class="settings-menu">
-                <!---------Modo Oscuro--------->
                 <div id="dark-btn" class="dark-btn-on">
                     <span></span>
                 </div>
+            </div>
+            <!---------settings-menu--------->
+            <div class="settings-menu">
                 <div class="settings-menu-inner">
-                    <div class="user-perfil">
-                        <div class="profile-pic-container">
-                            <img class="fotoPerfil" alt="Foto de Perfil"/>
-                        </div>
+                    <div class="user-profile">
+                        <img src="../Img/perfilDefault.png">
                         <div>
-                            <p class="nombre-usuario">Cargando...</p>
-                            <a href="../HTML/perfil.html" data-trad="perfil">Perfil</a>
+                            <p>Usuario</p>
+                            <a href="#" data-trad="perfil">Perfil</a>
                         </div>
                     </div>
                     <hr>
@@ -88,23 +84,26 @@
     <div class="main-content">
         <section class="profile-header">
                 <div class="profile-picture">
-                    <img class="fotoPerfil" alt="Foto de Perfil" />
+                    <img src="../Img/perfilDefault.png" alt="Imagen de Perfil">
+                    <div class="picture-overlay">
+                        <i class="fa-solid fa-camera"></i>
+                        <p>Actualizar foto</p>
+                    </div>
                 </div>
                 <div class="profile-info">
-                    <h1 class="nombre">Cargando...</h1>
-                    <h3 class="nombre-completo">Cargando...</h3>
-                    <h4><span data-trad="vive">Vive en:</span> <span class="ciudad">Cargando...</span> - <span class="pais">Cargando...</span></h4>
-                    <h4><span data-trad="nacio">Nació:</span> <span class="fecha-nacimiento">Cargando...</span></h4>
-                    <p class="user-bio biografia">Cargando...</p>
-                    <button id="openModalEditPerfilBtn" class="edit-profile-btn">Editar Perfil</button>
-                </div>                
+                    <h1>Nombre de usuario</h1>
+                    <h3>Nombre completo</h3>
+                    <h4>Cuidad - Pais</h4>
+                    <p class="user-bio">Descripcion/Biografia</p>
+                    <button id="openModalEditPerfilBtn" class="edit-profile-btn">Añadir amigo</button>
+                </div>
         </section>
 
         <section class="profile-details">
                 <div class="tabs">
-                    <button class="tab-button active">Posts</button>
-                    <button class="tab-button" data-trad="grupos">Grupos</button>
-                    <button class="tab-button" data-trad="amigos">Amigos</button>
+                    <button class="tab-button active" data-tab="posts">Posts</button>
+                    <button class="tab-button" data-tab="about">Grupos</button>
+                    <button class="tab-button" data-tab="friends">Amigos</button>
                 </div>
 
                 <div class="tab-content active" id="posts">
@@ -124,7 +123,7 @@
                                         <a href="#"><i class="fa-solid fa-ellipsis"></i></a>
                                     </div>
                                     <p class="post-text">Titulo</p>
-                                    <img src="../Img/post1.jpg" class="post-img" alt="Imagen Post">
+                                    <img src="../Img/../Img/post1.jpg" class="post-img" alt="Imagen Post">
                                     <div class="post-row">
                                         <div class="activity-icons">
                                             <div><i class="fa-solid fa-thumbs-up fa-xl"></i>120</div>
@@ -215,53 +214,6 @@
             </div>
         </section>
     </div>
-        <!-- Modal -->
-        <div id="editProfileModal" class="modalEditarPerfil">
-            <div class="modal-contentEditarPerfil">
-                <span class="closeEditarPerfil">&times;</span>
-                <h2 data-trad="editarPerfil">Editar Perfil</h2>
-                <form id="editProfileForm" enctype="multipart/form-data">
-                    <label for="username" data-trad="nombreUsuario">Nombre de usuario</label>
-                    <input type="text" id="username" name="Nombre de usuario">
-
-                    <label for="fullName" data-trad="nombreCompleto">Nombre completo</label>
-                    <input type="text" id="fullName" name="Nombre completo">
-
-                    <label for="ciudad" data-trad="ciudad">Ciudad</label>
-                    <select id="ciudad" name="Ciudad"></select>
-
-                    <label for="pais" data-trad="pais">País</label>
-                    <input type="text" id="pais" name="Pais" readonly>
-
-                    <label for="fecha_nacimiento" data-trad="fecha_nacimiento">Fecha de Nacimiento</label>
-                    <input type="date" id="fecha_nacimiento" name="Fecha de nacimiento">
-
-                    <label for="bio" data-trad="biografia">Biografía</label>
-                    <textarea id="bio" name="Biografia" rows="4"></textarea>
-
-                    <label for="profilePicture" data-trad="ImagenPerfil">Imagen de perfil</label>
-                    <input type="file" id="profilePicture" name="Foto de perfil" accept="image/*">
-
-                    <button type="submit" class="saveEdit-btn" data-trad="guardar">Guardar cambios</button>
-                </form>
-            </div>
-        </div>
-        <!--------------Editado-Exitosamente-------------->
-        <div id="alertaExitosoModal" class="modalAlerta">
-            <div class="modal-contentAlerta">   
-                <h2 data-trad="actualizado">¡Actualizado!</h2>
-                <p data-trad="correctamentePerfil">Has actualizado correctamente tu perfil.</p>
-                <button id="cerrarModalAlerta" class="button" data-trad="aceptar">Aceptar</button>
-            </div>
-        </div>
-        <!--------------Editado-No-Exitosamente-------------->
-        <div id="alertaNoExitosoModal" class="modalAlerta">
-            <div class="modal-contentAlerta">
-                <h2 data-trad="error">¡Error!</h2>
-                <p data-trad="problemaPerfil">Hubo un problema al actualizar el perfil.</p>
-                <button id="cerrarModalAlertaNo" class="button" data-trad="aceptar">Aceptar</button>
-            </div>
-        </div>
         <div id="publish-modal" class="modalPost">
             <div class="modal-contentPost">
                 <span class="closePosteando">&times;</span>
@@ -291,8 +243,7 @@
                 <button class="language-option" data-idioma="en">English</button>
             </div>
         </div>
-<script src="../JS/usuarioActualPerfil.js"></script>
-<script src="../JS/editarPerfil.js"></script>
+<script src="../JS/perfil.js"></script>
 <script src="../JS/dropdownMenu.js"></script>
 <script src="../JS/postBoton.js"></script>
 <script src="../JS/idioma.js"></script>

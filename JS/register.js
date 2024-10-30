@@ -1,64 +1,51 @@
-document.querySelector('.register-form').addEventListener('submit', async function (e) {
-    e.preventDefault();
 
-    const nombreCompleto = document.getElementById('Nombre_Completo').value;
-    const nombreUsuario = document.getElementById('Nombre_de_Usuario').value;
-    const correo = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const fechaNacimiento = document.getElementById('Fecha_De_Nacimiento').value;
+$(document).ready(function(){  
 
-    try {
-        const response = await fetch('http://localhost:8000/api/register', {
-            method: 'POST',
+    $("#btnRegister").click(function(){
+        var name = $("#name").val();
+        var email = $("#email").val();
+        var password = $("#password").val();
+        var password_confirmation = $("#password_confirmation").val();
+        
+        var data = {
+            "name": name,
+            "email": email,
+            "password": password,
+            "password_confirmation": password_confirmation
+        }
+
+        jQuery.ajax({  
+            url: 'http://localhost:8000/api/user',  
+            type: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                "Accept" : "application/json",
+                "Content-Type" : "application/json",
             },
-            body: JSON.stringify({
-                Nombre_Completo: nombreCompleto,
-                Nombre_de_Usuario: nombreUsuario,
-                Correo: correo,
-                password: password,
-                password_confirmation: password,
-                Fecha_De_Nacimiento: fechaNacimiento,
-                client_id : "1",
-                client_secret : "yUr2KXmywzZQECxyc2VHqNBcn1lbH7VSauwQqFAp",
-            }),
-        });
+            data: JSON.stringify(data),
+            
+            success: function (resultado) {
+                $("#registroExitosoModal").css("display", "flex");
 
-        if (response.ok) {
-            const data = await response.json();
-            mostrarModalExito();
-        } else {
-            const errorData = await response.json();
-            alert(`Error: ${errorData.message || 'Error en el registro'}`);
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        alert('Hubo un error al registrar el usuario');
-    }
-});
+                $("#cerrarModalRegistro").click(function () {
+                    $("#registroExitosoModal").fadeOut();
+                    $(location).prop('href', 'login.html');
+                });
 
-function mostrarModalExito() {
-    const modal = document.getElementById('registroExitosoModal');
-    const closeBtn = document.querySelector('.closeRegistro');
-    const okBtn = document.getElementById('cerrarModalRegistro');
+                $(".closeRegistro").click(function () {
+                    $("#registroExitosoModal").fadeOut();
+                    $(location).prop('href', 'login.html');
+                });
+            },
 
-    modal.style.display = 'flex';
-
-    closeBtn.addEventListener('click', () => {
-        modal.style.display = 'none';
-        window.location.href = 'login.html';
+            error: function (resultado) {
+                let mensaje = "";
+                if (resultado.responseJSON.error === "invalid_grant") {
+                    mensaje = resultado.responseJSON.message;
+                } else if (resultado.responseJSON.error === "invalid_request") {
+                    mensaje = resultado.responseJSON.hint;
+                }
+                $("#mensaje").html(mensaje);
+            }
+        });  
     });
-
-    okBtn.addEventListener('click', () => {
-        modal.style.display = 'none';
-        window.location.href = 'login.html';
-    });
-
-    window.addEventListener('click', (event) => {
-        if (event.target === modal) {
-            modal.style.display = 'none';
-            window.location.href = 'login.html';
-        }
-    });
-}
+});  
