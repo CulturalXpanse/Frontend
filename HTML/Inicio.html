@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../CSS/pagina.css">
     <link rel="stylesheet" href="../CSS/colores.css">
     <link rel="stylesheet" href="../CSS/scrollbar.css">
+    <link rel="stylesheet" href="../CSS/paginaResponsive.css">
     <link rel="icon" href="../Img/IconoPaginaCulteX.png" type="image/icon type">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/b2b9fd891f.js" crossorigin="anonymous"></script>
@@ -26,7 +27,7 @@
                 </div>
             </div>
             <div class="nav-right">
-                <ul>
+                <ul class="postNotificaciones">
                     <li>
                         <!---------Boton de Post--------->
                         <i class="fa-solid fa-plus fa-xl post-button" id="post-icon" alt="Boton Post"></i>
@@ -64,7 +65,7 @@
                 <div class="settings-menu-inner">
                     <div class="user-perfil">
                         <div class="profile-pic-container">
-                            <img class="fotoPerfil" alt="Foto de Perfil"/>
+                            <img class="fotoPerfil" alt="Foto de Perfil"/> 
                         </div>
                         <div>
                             <p class="nombre-usuario">Cargando...</p>
@@ -106,32 +107,6 @@
         <!---------main-content--------->
         <div class="main-content">
         <!---------POST-DINAMICOS--------->
-            <div class="post-container" id="post-1">
-                <div class="post-row">
-                    <div class="user-profile">
-                        <img src="../Img/perfilDefault.png">
-                        <div>
-                            <p id="nombreUsuario">Usuario</p>
-                            <span id="fechaPublicacion">Junio 24 2024, 13:40 pm</span>
-                        </div>
-                    </div>
-                    <div class="menuDots">
-                        <a class="dots" style="cursor: pointer;"><i class="fa-solid fa-ellipsis"></i></a>
-                        <div class="dropdown-contentDots">
-                            <a href="../HTML/perfil.html">Ver perfil</a>
-                        </div>
-                    </div>
-                </div>
-                <p class="post-text">Titulo</p>
-                <img src="../Img/post1.jpg" class="post-img" alt="Imagen Post">
-                <div class="post-row">
-                    <div class="activity-icons">
-                        <div><i id="likeBtn-1" class="fa-regular fa-thumbs-up fa-xl icono" onclick="toggleLike(1)"></i><span id="likeCount-1">0</span></div>   
-                        <div><i id="openCommentModal" class="fa-solid fa-comment fa-xl icono" onclick="openCommentModal()"></i><span id="comentarioCount-1">0</span></div>
-                        <div><i id="openShareModal" class="fa-solid fa-share fa-xl icono" onclick="openShareModal()"></i></div>
-                    </div>
-                </div>
-            </div>
         </div>
         <!---------right-sidebar--------->
         <div class="right-sidebar">
@@ -236,10 +211,9 @@
         <div id="publish-modal" class="modalPost">
             <div class="modal-contentPost">
                 <span class="closePosteando">&times;</span>
-                <h2 data-trad="crearPost">Crear nuevo post</h2>
+                <h2 class="creoPost" data-trad="crearPost">Crear nuevo post</h2>
                 <form>
-                    <textarea id="postContent" placeholder="Escribe tu post aquí..." rows="4"></textarea>
-                    <p class="requiereSubir" data-trad="requiereFotoVideo">Se requiere subir una foto o video</p>
+                    <textarea id="postTitle" placeholder="Escribe un titulo o lo que quieras..." rows="4"></textarea>
                     <div class="custom-file-upload">
                         <span id="file-name" data-trad="ningunArchivoSelec">Ningún archivo seleccionado</span>
                         <label for="fileInput">
@@ -248,8 +222,8 @@
                         <input type="file" id="fileInput" style="display: none;">
                     </div>
                     <div class="modal-actions">
-                        <button id="submit-post" data-trad="publicar">Publicar</button>
-                        <button class="cancel-post" data-trad="cancelar">Cancelar</button>
+                        <button type="button" id="submit-post" data-trad="publicar">Publicar</button>
+                        <button type="button" class="cancel-post" data-trad="cancelar">Cancelar</button>
                     </div>
                 </form>
             </div>
@@ -262,6 +236,62 @@
                 <button class="language-option" data-idioma="es">Español</button>
                 <button class="language-option" data-idioma="en">English</button>
             </div>
+        </div>
+        <!--------------Post-Creado-Exitosamente-------------->
+        <div id="alertaExitosoModal" class="modalAlerta">
+            <div class="modal-contentAlerta">   
+                <h2 data-trad="publicado">¡Publicado!</h2>
+                <p data-trad="correctamentePost">Publicado con exito.</p>
+                <button id="cerrarModalAlerta" class="button" data-trad="aceptar">Aceptar</button>
+            </div>
+        </div>
+        <!--------------Post-No-Creado-Exitosamente-------------->
+        <div id="alertaNoExitosoModal" class="modalAlerta">
+            <div class="modal-contentAlerta">
+                <h2 data-trad="error">¡Error!</h2>
+                <p data-trad="problemaPost">Hubo un problema al hacer la publicacion.</p>
+                <button id="cerrarModalAlertaNo" class="button" data-trad="aceptar">Aceptar</button>
+            </div>
+        </div>
+
+        <div class="bottom-bar">
+            <div class="search-box">
+                <img src="../Img/search.png" alt="Imagen lupa">
+                <input type="text" id="buscarInput" data-trad="buscar" placeholder="Buscar...">
+            </div>
+            <ul>
+                <li>
+                    <i class="fa-regular fa-comments" id="chat-toggle-btn"></i>
+                </li>
+                <li>
+                    <!---------Boton de Post--------->
+                    <i class="fa-solid fa-plus fa-xl post-button" id="post-icon" alt="Boton Post"></i>
+                </li>
+                <li>
+                    <i class="fa-regular fa-bell fa-xl" id="notification-icon" onclick="notificationMenuToggle()" alt="Boton Notificaciones"></i>
+                    <div id="notification-menu" class="notification-menu">
+                        <div class="notification-item">
+                            <p data-trad="noNotificaciones">No tienes nuevas notificaciones.</p>
+                        </div>
+                        <div class="notification-item">
+                            <p>Usuario te envió solicitud de amistad.</p>
+                        </div>
+                        <div class="notification-item">
+                            <p>Usuario le dio like a tu post.</p>
+                        </div>
+                        <div class="notification-item">
+                            <p>Usuario entró al Grupo</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="sidebar-button left-sidebar-button">
+            <i class="fa-solid fa-arrow-right"></i>
+        </div>
+        <div class="sidebar-button right-sidebar-button">
+            <i class="fa-solid fa-arrow-left"></i>
         </div>
         <!---------Scripts--------->
 <script src="../JS/usuarioActual.js"></script>

@@ -13,7 +13,7 @@ $(document).ready(function(){
             "password": password,
             "grant_type" : "password",
             "client_id" : 1,
-            "client_secret" : "VDGDvPLbiKTJo87tGa6V19BrerZHkqLkotOlamYN"
+            "client_secret" : "cnv3ncZwkWlkjMXrA2Dx7PQb19caNeq9Tp0gq0NW"
         }
 
         jQuery.ajax({  

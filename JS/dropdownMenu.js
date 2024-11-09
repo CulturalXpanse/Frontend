@@ -56,11 +56,10 @@
         dot.addEventListener('click', function(event) {
             const dropdown = this.nextElementSibling;
             dropdown.classList.toggle('show');
-            event.stopPropagation(); // Evita que el evento se propague
+            event.stopPropagation();
         });
     });
 
-    // Cerrar el menú si se hace clic fuera
     document.addEventListener('click', () => {
         dots.forEach(dot => {
             const dropdown = dot.nextElementSibling;

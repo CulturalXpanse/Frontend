@@ -80,6 +80,7 @@ const traducciones = {
             centroAyuda: "Centro de ayuda",
             cerrarSesion:"Cerrar sesión",
             grupos: "Grupos",
+            posts: "Publicaciones",
             derechos: "Todos los derechos reservados.",
             eventos: "Eventos",
             verTodos:"Ver todos",
@@ -195,6 +196,7 @@ const traducciones = {
             idioma:"Language",
             centroAyuda: "Help Center",
             cerrarSesion:"Logout",
+            posts:"Posts",
             grupos: "Groups",
             derechos: "All rights reserved.",
             eventos: "Events",
@@ -286,14 +288,10 @@ document.querySelectorAll('.language-option').forEach(button => {
             pagina = "register";
         } else if (window.location.pathname.includes("centroDeAyuda")) {
             pagina = "centroDeAyuda";
-        } else if (window.location.pathname.includes("olvidarContrasenia")) {
-            pagina = "olvidarContrasenia";
         } else if (window.location.pathname.includes("inicio")) {
             pagina = "inicio";
         } else if (window.location.pathname.includes("perfil")) {
             pagina = "perfil";
-        } else if (window.location.pathname.includes("configuracion")) {
-            pagina = "configuracion";
         } else {
             console.warn("No se pudo detectar la página actual.");
             return;

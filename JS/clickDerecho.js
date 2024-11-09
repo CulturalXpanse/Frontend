@@ -29,3 +29,45 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     });
 });
+
+const leftSidebarButton = document.querySelector('.left-sidebar-button');
+const rightSidebarButton = document.querySelector('.right-sidebar-button');
+const leftSidebar = document.querySelector('.left-sidebar');
+const rightSidebar = document.querySelector('.right-sidebar');
+const leftArrow = leftSidebarButton.querySelector('i');
+const rightArrow = rightSidebarButton.querySelector('i');
+
+function closeBothSidebars() {
+    leftSidebar.classList.remove('visible');
+    rightSidebar.classList.remove('visible');
+    leftArrow.classList.remove('fa-arrow-left');
+    leftArrow.classList.add('fa-arrow-right');
+    rightArrow.classList.remove('fa-arrow-right');
+    rightArrow.classList.add('fa-arrow-left');
+}
+
+leftSidebarButton.addEventListener('click', () => {
+    if (leftSidebar.classList.contains('visible')) {
+        leftSidebar.classList.remove('visible');
+        leftArrow.classList.remove('fa-arrow-left');
+        leftArrow.classList.add('fa-arrow-right');
+    } else {
+        closeBothSidebars();
+        leftSidebar.classList.add('visible');
+        leftArrow.classList.remove('fa-arrow-right');
+        leftArrow.classList.add('fa-arrow-left');
+    }
+});
+
+rightSidebarButton.addEventListener('click', () => {
+    if (rightSidebar.classList.contains('visible')) {
+        rightSidebar.classList.remove('visible');
+        rightArrow.classList.remove('fa-arrow-right');
+        rightArrow.classList.add('fa-arrow-left');
+    } else {
+        closeBothSidebars();
+        rightSidebar.classList.add('visible');
+        rightArrow.classList.remove('fa-arrow-left');
+        rightArrow.classList.add('fa-arrow-right');
+    }
+});

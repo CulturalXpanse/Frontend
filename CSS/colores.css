@@ -18,6 +18,7 @@
     --alrevez: #B0FE76;
     --nav-iconos: #fff;
     --circulo-perfil: #000;
+    --color-flechas: #fff;
 }
 
 .dark-theme{
@@ -30,4 +31,5 @@
     --alrevez: #363635;
     --nav-iconos: #fff;
     --circulo-perfil: #fff;
+    --color-flechas: #B0FE76;
 }
