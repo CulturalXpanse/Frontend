@@ -90,7 +90,7 @@ nav{
     height: 90vh;
     flex-basis: 25%;
     position: sticky;
-    top: 0;
+    top: 70px;
     align-self: flex-start;
 
 }
@@ -200,6 +200,68 @@ nav{
 .linea {
     border-bottom: 1px solid #ccc;
 }
+
+/* ------------Amigos-------------- */
+
+.amigos-list {
+    flex-grow: 1;
+    overflow-y: auto;
+    max-height: calc(100vh - 120px);
+}
+.amigos-listOtro {
+    flex-grow: 1;
+    overflow-y: auto;
+    max-height: calc(100vh - 120px);
+}
+.amigos {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+.amigos .foto-perfil-container {
+    width: 45px;
+    height: 45px;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 2px solid var(--circulo-perfil);
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+.amigos img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.amigos a {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+}
+.amigos p {
+    color: var(--letras);
+}
+.amigos i {
+    color: var(--color-iconos);
+}
+.amigos:hover {
+    background-color: var(--color-iconos);
+}
+.amigos:hover p {
+    color: var(--bg-color);
+}
+.amigos:hover i {
+    color: var(--bg-color);
+}
+
+/* ------------------------------- */
+
 .friends {
     display: flex;
     align-items: center;
@@ -226,46 +288,8 @@ nav{
     margin: 0;
     font-size: 16px;
 }
-.amigos-list {
-    flex-grow: 1;
-    overflow-y: auto;
-    max-height: calc(100vh - 120px);
-}
-.amigos {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 8px;
-    transition: background-color 0.2s;
-    cursor: pointer;
-}
-.amigos img {
-    width: 40px;
-    margin-right: 10px;
-    border-radius: 50%;
-}
-.amigos a{
-    display: flex;
-    flex: 1;
-    align-items: center;
-    justify-content: space-between;
-}
-.amigos p {
-    color: var(--letras);
-}
-.amigos i {
-    color: var(--color-iconos);
-}
-.amigos:hover {
-    background-color: var(--color-iconos);
-}
-.amigos:hover p {
-    color: var(--bg-color);
-}
-.amigos:hover i {
-    color: var(--bg-color);
-}
+
+
 .user-perfil {
     display: flex;
     align-items: center;
@@ -354,6 +378,33 @@ nav{
     padding: 20px;
     color: #626262;
     margin: 20px 0;
+    border-left: 4px solid var(--color-post);
+}
+.post-media-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.post-media {
+    width: 100%;
+    height: 400px;
+    margin-bottom: 10px;
+}
+.post-img-container {
+    width: 100%;
+    max-width: 800px;
+    height: 450px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.post-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 .user-perfil span {
     font-size: 13px;
@@ -363,14 +414,6 @@ nav{
     color: var(--letras);
     margin: 15px 0;
     font-size: 15px;
-}
-.post-img {
-    width: 100%;
-    justify-content: center;
-    max-width: 800px;
-    max-height: 500px;
-    border-radius: 4px;
-    margin-bottom: 10px;
 }
 .post-row {
     display: flex;
@@ -397,6 +440,66 @@ nav{
 .post-row a {
     color: var(--color-iconos); 
 }
+
+/* -----------Evento----------- */
+
+.evento-container {
+    width: 100%;
+    background: var(--bg-color);
+    border-radius: 6px;
+    padding: 20px;
+    color: #626262;
+    margin: 20px 0;
+    border-right: 4px solid var(--color-post);
+}
+.evento-detalles {
+    margin: 15px 0;
+}
+.evento-nombre {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--letras);
+    margin: 5px 0;
+}
+.evento-fechas {
+    margin-top: 5px;
+    font-size: 14px;
+    color: var(--color-iconos);
+    margin-bottom: 10px;
+}
+.evento-descripcion {
+    font-size: 15px;
+    color: var(--letras);
+}
+.evento-img-container {
+    width: 100%;
+    max-width: 800px;
+    height: 300px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.evento-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.evento-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.eventoH2 {
+    text-align: right;
+}
+.menuDots a {
+    color: var(--color-iconos);
+}
+
+/* ---------------------------- */
+/* ---------------------------- */
 .footer {
     flex-shrink: 0;
     text-align: center;
@@ -505,18 +608,36 @@ nav{
 .notification-item:hover {
     background-color: var(--body-color);
 }
-#notification-icon:hover {
-    cursor: pointer;
-    color: #B0FE76;
-    transform: scale(1.1);
-    transition: transform 0.2s ease;
-}
+
+/* --------Botones del Nav-------- */
+
 #post-icon:hover {
     cursor: pointer;
     color: #B0FE76;
     transform: scale(1.1);
     transition: transform 0.2s ease;
 }
+#evento-icon:hover {
+    cursor: pointer;
+    color: #B0FE76;
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+}
+#grupo-icon:hover {
+    cursor: pointer;
+    color: #B0FE76;
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+}
+#notification-icon:hover {
+    cursor: pointer;
+    color: #B0FE76;
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+}
+
+/* -----------Modal Post----------- */
+
 .modalPost {
     display: none;
     position: fixed;
@@ -566,13 +687,11 @@ textarea {
     border: 1px solid #ccc;
     resize: none;
 }
-
 .custom-file-upload {
     display: flex;
     align-items: center;
     justify-content: right;
     margin-bottom: 15px;
-
 }
 .custom-file-upload button {
     background-color: #007bff;
@@ -626,6 +745,114 @@ textarea {
     font-size: 14px;
     color: var(--letras);
 }
+
+/* ------------------------------ */
+
+/*---------Modal Evento---------- */
+
+.modalEvent {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+}
+.modal-contentEvent {
+    background-color: var(--bg-color);
+    color: var(--letras);
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    border-radius: 10px;
+    position: relative;
+    animation: fadeIn 0.3s;
+}
+.creoEvent {
+    margin-bottom: 15px;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+.closeEvent {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: var(--letras);
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.closeEvent:hover {
+    color: var(--color-iconos);
+}
+#eventName, #eventDescription, #eventStartDate, #eventEndDate {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+.custom-file-upload-evento {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    margin-bottom: 15px;
+}
+.custom-file-upload-evento button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    margin-top: 10px;
+    margin-left: 10px;
+    padding: 10px 54px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.custom-file-upload-evento button:hover {
+    background-color: #0056b3;
+}
+#event-file-name {
+    margin-left: 10px;
+    font-size: 14px;
+    color: var(--letras);
+}
+.modal-actions-event {
+    display: flex;
+    justify-content: right;
+    gap: 15px;
+}
+.modal-actions-event button {
+    padding: 10px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+#submit-event {
+    background-color: #B0FE76;
+    color: #000;
+}
+#submit-event:hover {
+    color: #000;
+    background-color: #81E979;
+}
+.cancel-event {
+    background-color: #dc3545;
+    color: white;
+}
+.cancel-event:hover {
+    background-color: #7c1620;
+}
+
+/* ----------------------------- */
 .idiomaBoton {
     color: var(--color-iconos);
     cursor: pointer;
@@ -781,6 +1008,23 @@ textarea {
     color: #000;
     background-color: var(--color3);
 }
+
+.opciones_O_anadir {
+    padding: 10px 20px;
+    background-color: #1e1e1e;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.opciones_O_anadir:hover {
+    color: #000;
+    background-color: var(--color3);
+}
+
+/* ------------------ */
 .tabs {
     display: flex;
     justify-content: space-around;
@@ -824,6 +1068,9 @@ textarea {
     flex-basis: 25%;
 }
 .columna-post {
+    flex-basis: 50%;
+}
+.columna-postOtroPerfil {
     flex-basis: 50%;
 }
 .right-relleno-post {
@@ -921,32 +1168,41 @@ textarea {
 .saveEdit-btn:hover {
     background-color: #218838;
 }
-.menuDots:hover {
+
+/* --------Menu dots--------- */
+
+.menuDots {
     position: relative;
     display: inline-block;
 }
-.dropdown-contentDots a {
-        text-decoration: none;
+.menuDots:hover {
+    cursor: pointer;
 }
 .dropdown-contentDots {
     display: none;
     position: absolute;
     background-color: var(--bg-color);
     border: 1px solid var(--color-iconos);
-    border-radius: 15px;
+    border-radius: 8px;
     color: var(--letras);
-    width: 86px;
+    width: 100px;
     padding: 10px;
-    margin: 10px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    margin-top: 5px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
-.show {
+.dropdown-contentDots a {
+    text-decoration: none;
+    color: var(--letras);
     display: block;
+    padding: 5px 10px;
+}
+.dropdown-contentDots a:hover {
+    background-color: var(--hover-bg-color);
 }
 
-
 /* -----------COMENTARIOS------------ */
+
 .modalComentario {
     display: none;
     position: fixed;
@@ -979,9 +1235,73 @@ textarea {
     color: var(--color3);
     text-align: center;
 }
+.comments-section {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+.comentario-usuario {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 100%;
+}
+.comentario-usuario .foto-perfil-container {
+    width: 45px;
+    height: 45px;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 2px solid var(--circulo-perfil);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+.comentario-usuario img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.informacion-usuario {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.usuario-nombre p {
+    margin: 0;
+    font-weight: bold;
+    color: var(--letras);
+    font-size: 16px;
+}
+.fecha-comentario span {
+    font-size: 13px;
+    color: #9a9a9a;
+    margin-top: 5px;
+}
+/* Contenido del comentario */
+
+.contenido-comentario {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: var(--color-comentario);
+    border-radius: 10px;
+    width: 100%;
+    box-sizing: border-box; 
+}
+/* Estilo para comentarios sin mensajes */
+.no-comments-message {
+    font-size: 16px;
+    color: #888;
+    text-align: center;
+    margin-top: 20px;
+}
 .modal-contentComentario textarea {
     width: 100%;
-    height: 120px;
+    height: 80px;
     padding: 15px;
     font-size: 16px;
     border: 2px solid #ddd;

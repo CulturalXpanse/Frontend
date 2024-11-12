@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../CSS/pagina.css">
     <link rel="stylesheet" href="../CSS/colores.css">
     <link rel="stylesheet" href="../CSS/scrollbar.css">
-    <link rel="stylesheet" href="../CSS/idiomaModal.css">
+    <link rel="stylesheet" href="../CSS/perfilResponsive.css">
     <link rel="icon" href="../Img/IconoPaginaCulteX.png" type="image/icon type">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/b2b9fd891f.js" crossorigin="anonymous"></script>
@@ -28,9 +28,19 @@
             <div class="nav-right">
                 <ul>
                     <li>
+                        <!---------Boton de Post---------->
                         <i class="fa-solid fa-plus fa-xl post-button" id="post-icon" alt="Boton Post"></i>
                     </li>
                     <li>
+                        <!---------Boton de Evento-------->
+                        <i class="fa-regular fa-calendar-plus fa-xl event-button" id="evento-icon" alt="Boton Evento"></i>
+                    </li>
+                    <li>
+                        <!---------Boton de Grupo--------->
+                        <i class="fa-solid fa-users-rectangle fa-xl grupo-button" id="grupo-icon" alt="Boton Grupo"></i>
+                    </li>
+                    <li>
+                        <!---------Notificaciones---------->
                         <i class="fa-regular fa-bell fa-xl" id="notification-icon" onclick="notificationMenuToggle()" alt="Boton Notificaciones"></i>
                         <div id="notification-menu" class="notification-menu">
                             <div class="notification-item">
@@ -87,126 +97,232 @@
 
     <div class="main-content">
         <section class="profile-header">
-                <div class="profile-picture">
-                    <img class="fotoPerfil" alt="Foto de Perfil" />
-                </div>
-                <div class="profile-info">
-                    <h1 class="nombre">Cargando...</h1>
-                    <h3 class="nombre-completo">Cargando...</h3>
-                    <h4><span data-trad="vive">Vive en:</span> <span class="ciudad">Cargando...</span> - <span class="pais">Cargando...</span></h4>
-                    <h4><span data-trad="nacio">Nació:</span> <span class="fecha-nacimiento">Cargando...</span></h4>
-                    <p class="user-bio biografia">Cargando...</p>
-                    <button id="openModalEditPerfilBtn" class="edit-profile-btn">Editar Perfil</button>
-                </div>                
+            <div class="profile-picture">
+                <img class="fotoPerfil" alt="Foto de Perfil" />
+            </div>
+            <div class="profile-info">
+                <h1 class="nombre">Cargando...</h1>
+                <h3 class="nombre-completo">Cargando...</h3>
+                <h4><span data-trad="vive">Vive en:</span> <span class="ciudad">Cargando...</span> - <span class="pais">Cargando...</span></h4>
+                <h4><span data-trad="nacio">Nació:</span> <span class="fecha-nacimiento">Cargando...</span></h4>
+                <p class="user-bio biografia">Cargando...</p>
+                <button id="openModalEditPerfilBtn" class="edit-profile-btn">Editar Perfil</button>
+            </div>                
         </section>
 
         <section class="profile-details">
-                <div class="tabs">
-                    <button class="tab-button active" data-tab="posts" data-trad="posts">Posts</button>
-                    <button class="tab-button" data-tab="grupos" data-trad="grupos">Grupos</button>
-                    <button class="tab-button" data-tab="amigos" data-trad="amigos">Amigos</button>
-                </div>
+            <div class="tabs">
+                <button class="tab-button active" data-tab="posts">Posts</button>
+                <button class="tab-button" data-tab="grupos" data-trad="grupos">Grupos</button>
+                <button class="tab-button" data-tab="amigos" data-trad="amigos">Amigos</button>
+            </div>
 
-                <div class="tab-content active" id="posts">
-                    <div class="contenedor-post">
-                        <div class="left-relleno-post"></div>
-                            <div class="columna-post">
-                            <!------------SE-CARGAN-LOS-POST-AQUI-------------->
-
-                            </div>
-                        <div class="right-relleno-post"></div>
+            <div class="tab-content active" id="posts">
+                <div class="contenedor-post">
+                    <div class="left-relleno-post"></div>
+                    <div class="columna-post">
+                        <!----Aqui se cargan los posts---->
                     </div>
+                    <div class="right-relleno-post"></div>
                 </div>
+            </div>
 
             <div class="tab-content" id="grupos">
+                <!----Aqui se cargan los grupos---->
             </div>
 
             <div class="tab-content" id="amigos">
+                <div class="amigos-list">
+                    <!----Aqui se cargan los amigos---->
+                </div>
             </div>
         </section>
     </div>
-        <!-- Modal -->
-        <div id="editProfileModal" class="modalEditarPerfil">
-            <div class="modal-contentEditarPerfil">
-                <span class="closeEditarPerfil">&times;</span>
-                <h2 data-trad="editarPerfil">Editar Perfil</h2>
-                <form id="editProfileForm" enctype="multipart/form-data">
-                    <label for="username" data-trad="nombreUsuario">Nombre de usuario</label>
-                    <input type="text" id="username" name="Nombre de usuario">
+    <!-- Modal -->
+    <div id="editProfileModal" class="modalEditarPerfil">
+        <div class="modal-contentEditarPerfil">
+            <span class="closeEditarPerfil">&times;</span>
+            <h2 data-trad="editarPerfil">Editar Perfil</h2>
+            <form id="editProfileForm" enctype="multipart/form-data">
+                <label for="username" data-trad="nombreUsuario">Nombre de usuario</label>
+                <input type="text" id="username" name="Nombre de usuario">
 
-                    <label for="fullName" data-trad="nombreCompleto">Nombre completo</label>
-                    <input type="text" id="fullName" name="Nombre completo">
+                <label for="fullName" data-trad="nombreCompleto">Nombre completo</label>
+                <input type="text" id="fullName" name="Nombre completo">
 
-                    <label for="ciudad" data-trad="ciudad">Ciudad</label>
-                    <select id="ciudad" name="Ciudad"></select>
+                <label for="ciudad" data-trad="ciudad">Ciudad</label>
+                <select id="ciudad" name="Ciudad"></select>
 
-                    <label for="pais" data-trad="pais">País</label>
-                    <input type="text" id="pais" name="Pais" readonly>
+                <label for="pais" data-trad="pais">País</label>
+                <input type="text" id="pais" name="Pais" readonly>
 
-                    <label for="fecha_nacimiento" data-trad="fecha_nacimiento">Fecha de Nacimiento</label>
-                    <input type="date" id="fecha_nacimiento" name="Fecha de nacimiento">
+                <label for="fecha_nacimiento" data-trad="fecha_nacimiento">Fecha de Nacimiento</label>
+                <input type="date" id="fecha_nacimiento" name="Fecha de nacimiento">
 
-                    <label for="bio" data-trad="biografia">Biografía</label>
-                    <textarea id="bio" name="Biografia" rows="4"></textarea>
+                <label for="bio" data-trad="biografia">Biografía</label>
+                <textarea id="bio" name="Biografia" rows="4"></textarea>
 
-                    <label for="profilePicture" data-trad="ImagenPerfil">Imagen de perfil</label>
-                    <input type="file" id="profilePicture" name="Foto de perfil" accept="image/*">
+                <label for="profilePicture" data-trad="ImagenPerfil">Imagen de perfil</label>
+                <input type="file" id="profilePicture" name="Foto de perfil" accept="image/*">
 
-                    <button type="submit" class="saveEdit-btn" data-trad="guardar">Guardar cambios</button>
-                </form>
-            </div>
+                <button type="submit" class="saveEdit-btn" data-trad="guardar">Guardar cambios</button>
+            </form>
         </div>
-        <!--------------Editado-Exitosamente-------------->
-        <div id="alertaExitosoModal" class="modalAlerta">
-            <div class="modal-contentAlerta">   
-                <h2 data-trad="actualizado">¡Actualizado!</h2>
-                <p data-trad="correctamentePerfil">Has actualizado correctamente tu perfil.</p>
-                <button id="cerrarModalAlerta" class="button" data-trad="aceptar">Aceptar</button>
-            </div>
+    </div>
+    <!--------------Editado-Exitosamente-------------->
+    <div id="alertaExitosoModalPerfil" class="modalAlerta">
+        <div class="modal-contentAlerta">   
+            <h2 data-trad="actualizado">¡Actualizado!</h2>
+            <p data-trad="correctamentePerfil">Has actualizado correctamente tu perfil.</p>
+            <button id="cerrarModalAlertaPerfil" class="button" data-trad="aceptar">Aceptar</button>
         </div>
-        <!--------------Editado-No-Exitosamente-------------->
-        <div id="alertaNoExitosoModal" class="modalAlerta">
-            <div class="modal-contentAlerta">
-                <h2 data-trad="error">¡Error!</h2>
-                <p data-trad="problemaPerfil">Hubo un problema al actualizar el perfil.</p>
-                <button id="cerrarModalAlertaNo" class="button" data-trad="aceptar">Aceptar</button>
-            </div>
+    </div>
+    <!--------------Editado-No-Exitosamente-------------->
+    <div id="alertaNoExitosoModalPerfil" class="modalAlerta">
+        <div class="modal-contentAlerta">
+            <h2 data-trad="error">¡Error!</h2>
+            <p data-trad="problemaPerfil">Hubo un problema al actualizar el perfil.</p>
+            <button id="cerrarModalAlertaNoPerfil" class="button" data-trad="aceptar">Aceptar</button>
         </div>
-        <div id="publish-modal" class="modalPost">
-            <div class="modal-contentPost">
-                <span class="closePosteando">&times;</span>
-                <h2 data-trad="crearPost">Crear nuevo post</h2>
-                <form>
-                    <textarea id="postContent" placeholder="Escribe tu post aquí..." rows="4"></textarea>
-                    <p class="requiereSubir" data-trad="requiereFotoVideo">Se requiere subir una foto o video</p>
-                    <div class="custom-file-upload">
-                        <span id="file-name" data-trad="ningunArchivoSelec">Ningún archivo seleccionado</span>
-                        <label for="fileInput">
-                            <button type="button"><i class="fa-solid fa-upload fa-2x1"></i></button>
-                        </label>
-                        <input type="file" id="fileInput" style="display: none;">
+    </div>
+    <!---------Click derecho---------->
+    <div id="context-menu">
+        <ul>
+            <li id="view-profile">Ver perfil</li>
+        </ul>
+    </div>
+    <!--------------Chat-------------->
+    <div class="chat-container minimized" id="chat-container">
+        <div class="chat-header" id="chat-header">
+            <h2>Chat</h2>
+            <span class="username">Usuario</span>
+        </div>
+        <div class="chat-messages" id="chat-messages">
+            <!-- Mensajes -->
+        </div>
+        <div class="chat-input">
+            <textarea id="message-input" placeholder="Escribe un mensaje..."></textarea>
+            <button id="send-btn">Enviar</button>
+        </div>
+    </div>
+    <!---------Compartir Post--------->
+    <!--<div id="shareModal" class="modalCompartir">
+        <div class="modal-contentCompartir">
+            <span class="closeCompartir" id="closeShareModal">&times;</span>
+            <h2>Compartir Publicación</h2>
+            <input type="text" id="shareInput" placeholder="Escribe el nombre de tus amigos..."/>
+            <button class="compartir-btn" id="submitShare">Compartir</button>
+        </div>
+    </div>-->
+    <!---------Hacer Comentario--------->
+    <div id="commentModal" class="modalComentario" style="display: none;">
+        <div class="modal-contentComentario">
+            <span class="closeComentario" id="closeModalComentario">&times;</span>
+            <h2>Comentarios</h2>
+            <!-- Sección de comentarios -->
+            <div id="comentariosContainer" class="comments-section">
+                <!------Comentarios------>
+            </div>
+            <!-- Caja de texto para el comentario -->
+            <textarea id="commentInput" placeholder="Escribe tu comentario aquí..."></textarea>
+            <button class="comentar-btn" id="submitComment">Enviar Comentario</button>
+        </div>
+    </div>       
+    <!---------Crear Post--------->
+    <div id="publish-modal" class="modalPost">
+        <div class="modal-contentPost">
+            <span class="closePosteando">&times;</span>
+            <h2 class="creoPost" data-trad="crearPost">Crear nuevo post</h2>
+            <form>
+                <textarea id="postTitle" placeholder="Escribe un titulo o lo que quieras..." rows="4"></textarea>
+                <div class="custom-file-upload">
+                    <span id="file-name" data-trad="ningunArchivoSelec">Ningún archivo seleccionado</span>
+                    <label for="fileInput">
+                        <button type="button"><i class="fa-solid fa-upload fa-2x1"></i></button>
+                    </label>
+                    <input type="file" id="fileInput" style="display: none;">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" id="submit-post" data-trad="publicar">Publicar</button>
+                    <button type="button" class="cancel-post" data-trad="cancelar">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!---------Cambiar Idioma--------->
+    <div id="languageModal" class="modalIdioma">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 data-trad="seleccionIdioma">Selecciona el idioma</h2>
+            <button class="language-option" data-idioma="es">Español</button>
+            <button class="language-option" data-idioma="en">English</button>
+        </div>
+    </div>
+    <!--------------Post-Creado-Exitosamente-------------->
+    <div id="alertaExitosoModal" class="modalAlerta">
+        <div class="modal-contentAlerta">   
+            <h2 data-trad="publicado">¡Publicado!</h2>
+            <p data-trad="correctamentePost">Publicado con exito.</p>
+            <button id="cerrarModalAlerta" class="button" data-trad="aceptar">Aceptar</button>
+        </div>
+    </div>
+    <!--------------Post-No-Creado-Exitosamente-------------->
+    <div id="alertaNoExitosoModal" class="modalAlerta">
+        <div class="modal-contentAlerta">
+            <h2 data-trad="error">¡Error!</h2>
+            <p data-trad="problemaPost">Hubo un problema al hacer la publicacion.</p>
+            <button id="cerrarModalAlertaNo" class="button" data-trad="aceptar">Aceptar</button>
+        </div>
+    </div>
+    <!----Barra de abajo para iconos en telefono---->
+    <div class="bottom-bar">
+        <div class="search-box">
+            <img src="../Img/search.png" alt="Imagen lupa">
+            <input type="text" id="buscarInput" data-trad="buscar" placeholder="Buscar...">
+        </div>
+        <ul>
+            <li>
+                <i class="fa-regular fa-comments" id="chat-toggle-btn"></i>
+            </li>
+            <li>
+                <!---------Boton de Post--------->
+                <i class="fa-solid fa-plus fa-xl post-button" id="post-icon" alt="Boton Post"></i>
+            </li>
+            <li>
+                <i class="fa-regular fa-bell fa-xl" id="notification-icon" onclick="notificationMenuToggle()" alt="Boton Notificaciones"></i>
+                <div id="notification-menu" class="notification-menu">
+                    <div class="notification-item">
+                        <p data-trad="noNotificaciones">No tienes nuevas notificaciones.</p>
                     </div>
-                    <div class="modal-actions">
-                        <button id="submit-post" data-trad="publicar">Publicar</button>
-                        <button class="cancel-post" data-trad="cancelar">Cancelar</button>
+                    <div class="notification-item">
+                        <p>Usuario te envió solicitud de amistad.</p>
                     </div>
-                </form>
-            </div>
-        </div>
-        <div id="languageModal" class="modalIdioma">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2 data-trad="seleccionIdioma">Selecciona el idioma</h2>
-                <button class="language-option" data-idioma="es">Español</button>
-                <button class="language-option" data-idioma="en">English</button>
-            </div>
-        </div>
-<script src="../JS/usuarioActualPerfil.js"></script>
-<script src="../JS/editarPerfil.js"></script>
-<script src="../JS/dropdownMenu.js"></script>
-<script src="../JS/postBoton.js"></script>
-<script src="../JS/idioma.js"></script>
-<script src="../JS/idiomaAlmacenamiento.js"></script>
-<script src="../JS/cerrarSesion.js"></script>
+                    <div class="notification-item">
+                        <p>Usuario le dio like a tu post.</p>
+                    </div>
+                    <div class="notification-item">
+                        <p>Usuario entró al Grupo</p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!---------Scripts--------->
+    <script src="../JS/usuarioActualPerfil.js"></script>
+    <script src="../JS/dropdownMenu.js"></script>
+    <script src="../JS/amigos.js"></script>
+    <script src="../JS/botonCrearPost.js"></script>
+    <script src="../JS/botonCrearEvento.js"></script>
+    <script src="../JS/botonCrearGrupo.js"></script>
+    <script src="../JS/botonNotificaciones.js"></script>
+    <script src="../JS/editarPerfil.js"></script>
+    <script src="../JS/idioma.js"></script>
+    <script src="../JS/idiomaAlmacenamiento.js"></script>
+    <script src="../JS/sistemaLike.js"></script>
+    <script src="../JS/sistemaComentarios.js"></script>
+    <!--<script src="../JS/sistemaCompartir.js"></script>-->
+    <script src="../JS/chat.js"></script>
+    <script src="../JS/clickDerecho.js"></script>
+    <script src="../JS/cerrarSesion.js"></script>
 </body>
 </html>

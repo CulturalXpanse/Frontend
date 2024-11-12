@@ -6,11 +6,11 @@
     <meta name="description" content="CulteX es una plataforma diseñada para facilitar el intercambio cultural entre personas de diversas partes del mundo.">
     <meta name="keywords" content="CulteX,red social,intercambio cultural,culturas,tradiciones,costumbres,conectar personas">
     <meta name="author" content="Kevin Pereira, Xanders Ibarra, Martin Martinez, Juan Curbelo">
-    <title data-trad="titulo">CulteX | Inicio</title>
+    <title data-trad="titulo">CulteX | Perfil</title>
     <link rel="stylesheet" href="../CSS/pagina.css">
     <link rel="stylesheet" href="../CSS/colores.css">
     <link rel="stylesheet" href="../CSS/scrollbar.css">
-    <link rel="stylesheet" href="../CSS/paginaResponsive.css">
+    <link rel="stylesheet" href="../CSS/perfilResponsive.css">
     <link rel="icon" href="../Img/IconoPaginaCulteX.png" type="image/icon type">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/b2b9fd891f.js" crossorigin="anonymous"></script>
@@ -20,14 +20,13 @@
         <nav>
             <div class="nav-left">
                 <a href="../HTML/inicio.html"><img src="../Img/LetrasCulteXSinFondo.png" class="logo" alt="Logo"></a>
-                <!---------Buscador--------->
                 <div class="search-box">
                     <img src="../Img/search.png" alt="Imagen lupa">
                     <input type="text" id="buscarInput" data-trad="buscar" placeholder="Buscar...">
                 </div>
             </div>
             <div class="nav-right">
-                <ul class="postNotificaciones">
+                <ul>
                     <li>
                         <!---------Boton de Post---------->
                         <i class="fa-solid fa-plus fa-xl post-button" id="post-icon" alt="Boton Post"></i>
@@ -47,6 +46,7 @@
                             <div class="notification-item">
                                 <p data-trad="noNotificaciones">No tienes nuevas notificaciones.</p>
                             </div>
+                            <!-- Puedes agregar más notificaciones aquí -->
                             <div class="notification-item">
                                 <p>Usuario te envio solicitud de amistad.</p>
                             </div>
@@ -61,7 +61,7 @@
                 </ul>
                 <!---------Imagen de Perfil--------->
                 <div class="nav-user-icon online" onclick="settingsMenuToggle()">
-                    <img class="fotoPerfil" alt="Foto de Perfil"/>
+                    <img class="fotoPerfil" alt="Foto de Perfil" />
                 </div>
             </div>
             <!---------Menu Principal--------->
@@ -73,7 +73,7 @@
                 <div class="settings-menu-inner">
                     <div class="user-perfil">
                         <div class="profile-pic-container">
-                            <img class="fotoPerfil" alt="Foto de Perfil"/> 
+                            <img class="fotoPerfil" alt="Foto de Perfil"/>
                         </div>
                         <div>
                             <p class="nombre-usuario">Cargando...</p>
@@ -94,104 +94,50 @@
             </div>
         </nav>
     </header>
-    <div class="container">
-        <!---------left-sidebar--------->
-    <div class="left-sidebar">
-        <div class="imp-links">
-            <a><i class="fa-solid fa-user-group"></i><p data-trad="amigos">Amigos</p></a>
-        </div>
-        <div class="amigos-list">
-            <!--Aqui se cargan los amigos-->
-        </div>
-        <!---------Footer--------->
-        <div class="footer">
-            <p>&copy; 2024 CulteX, CulturalXpanse. <span data-trad="derechos">Todos los derechos reservados.</span></p>
-        </div>
-    </div>
 
     <div class="main-content">
-    <!---------Aqui se cargan los posts--------->
-    </div>
-    <!---------right-sidebar--------->
-    <div class="right-sidebar">
-        <div class="sidebar-title">
-            <!---------Eventos--------->
-            <h4 data-trad="eventos">Eventos</h4>
-            <a href="#" data-trad="verTodos">Ver todos</a>
-        </div>
-        <div class="event">
-            <div class="left-event">
-                <h3>18</h3>
-                <span>Marzo</span>
+        <section class="profile-header">
+            <div class="profile-picture">
+                <img class="fotoOtroPerfil" alt="Foto de Perfil" />
             </div>
-            <div class="right-event">
-                <h4>Evento 1</h4>
-                <p><i class="fas fa-map-marker-alt"></i> Ubicacion</p>
-                <a href="#" data-trad="masInfo">Mas info</a>
-            </div>
-        </div>
-        <div class="event">
-            <div class="left-event">
-                <h3>22</h3>
-                <span>Marzo</span>
-            </div>
-            <div class="right-event">
-                <h4>Evento 2</h4>
-                <p><i class="fas fa-map-marker-alt"></i> Ubicacion</p>
-                <a href="#" data-trad="masInfo">Mas info</a>
-            </div>
-        </div>
-        <div class="linea"></div>
-        <!---------Grupos--------->
-        <div class="friends">
-            <h4><i class="fa-solid fa-people-group"></i><p data-trad="grupos">Grupos</p></h4>
-        </div>
-        <div class="group-list">
-            <a href="../HTML/grupo.html">
-                <div class="group">
-                    <img src="../Img/perfilDefault.png" alt="Grupo 1">
-                    <p>Grupo</p>
+            <div class="profile-info">
+                <h1 class="nombrePerfil">Cargando...</h1>
+                <h3 class="nombre-completoPerfil">Cargando...</h3>
+                <h4><span data-trad="vive">Vive en:</span> <span class="ciudadPerfil">Cargando...</span> - <span class="paisPerfil">Cargando...</span></h4>
+                <h4><span data-trad="nacio">Nació:</span> <span class="fecha-nacimientoPerfil">Cargando...</span></h4>
+                <p class="user-bioPerfil biografia">Cargando...</p>
+                <div class="amistad-container">
+                    <!---Se carga si es amigo o no-->
                 </div>
-            </a>
-            <a href="../HTML/grupo.html">
-                <div class="group">
-                    <img src="../Img/perfilDefault.png" alt="Grupo 2">
-                    <p>Grupo</p>
+            </div>
+        </section>
+
+        <section class="profile-details">
+            <div class="tabs">
+                <button class="tab-button active" data-tab="posts">Posts</button>
+                <button class="tab-button" data-tab="grupos" data-trad="grupos">Grupos</button>
+                <button class="tab-button" data-tab="amigos" data-trad="amigos">Amigos</button>
+            </div>
+
+            <div class="tab-content active" id="posts">
+                <div class="contenedor-post">
+                    <div class="left-relleno-post"></div>
+                    <div class="columna-postOtroPerfil">
+                        <!----Aqui se cargan los posts---->
+                    </div>
+                    <div class="right-relleno-post"></div>
                 </div>
-            </a>
-            <a href="../HTML/grupo.html">
-                <div class="group">
-                    <img src="../Img/perfilDefault.png" alt="Grupo 3">
-                    <p>Grupo</p>
+            </div>
+
+            <div class="tab-content" id="grupos">
+                <!----Aqui se cargan los grupos---->
+            </div>
+
+            <div class="tab-content" id="amigos">
+                <div class="amigos-listOtro">
+                    <!----Aqui se cargan los amigos---->
                 </div>
-            </a>
-        </div>
-        <div class="linea"></div>
-        <!---------Publicidad--------->
-        <div class="advertisement">
-            <h4 data-trad="publicidad">Publicidad</h4>
-        </div>
-        <img src="../Img/advertisement.png" class="sidebar-ads" alt="Publicidad">
-    </div>
-    <!---------Click derecho---------->
-    <div id="context-menu">
-        <ul>
-            <li id="view-profile">Ver perfil</li>
-        </ul>
-    </div>
-    <!--------------Chat-------------->
-    <div class="chat-container minimized" id="chat-container">
-        <div class="chat-header" id="chat-header">
-            <h2>Chat</h2>
-            <span class="username">Usuario</span>
-        </div>
-        <div class="chat-messages" id="chat-messages">
-            <!-- Mensajes -->
-        </div>
-        <div class="chat-input">
-            <textarea id="message-input" placeholder="Escribe un mensaje..."></textarea>
-            <button id="send-btn">Enviar</button>
-        </div>
+        </section>
     </div>
     <!---------Compartir Post--------->
     <!--<div id="shareModal" class="modalCompartir">
@@ -237,30 +183,6 @@
             </form>
         </div>
     </div>
-    <!----------Crear Evento---------->
-    <div id="event-modal" class="modalPost">
-        <div class="modal-contentPost">
-            <span class="closeEvent">&times;</span>
-            <h2 class="creoPost" data-trad="crearEvento">Crear nuevo evento</h2>
-            <form>
-                <input type="text" id="eventName" placeholder="Nombre del evento" required>
-                <textarea id="eventDescription" placeholder="Descripción del evento" rows="4" required></textarea>
-                <input type="datetime-local" id="eventStartDate" required>
-                <input type="datetime-local" id="eventEndDate" required>
-                <div class="custom-file-upload-evento">
-                    <span id="event-file-name" data-trad="ningunArchivoSelec">Ningún archivo seleccionado</span>
-                    <label for="eventFileInput">
-                        <button type="button"><i class="fa-solid fa-upload fa-2x1"></i></button>
-                    </label>
-                    <input type="file" id="eventFileInput" style="display: none;">
-                </div>
-                <div class="modal-actions">
-                    <button type="button" id="submit-event" data-trad="crearEvento">Crear Evento</button>
-                    <button type="button" class="cancel-event" data-trad="cancelar">Cancelar</button>
-                </div>
-            </form>
-        </div>
-    </div>    
     <!---------Cambiar Idioma--------->
     <div id="languageModal" class="modalIdioma">
         <div class="modal-content">
@@ -319,21 +241,13 @@
             </li>
         </ul>
     </div>
-    <!---Flechitas para las sidebar en telefono--->
-    <div class="sidebar-button left-sidebar-button">
-        <i class="fa-solid fa-arrow-right"></i>
-    </div>
-    <div class="sidebar-button right-sidebar-button">
-        <i class="fa-solid fa-arrow-left"></i>
-    </div>
     <!---------Scripts--------->
-    <script src="../JS/usuarioActual.js"></script>
+    <script src="../JS/usuarioPerfil.js"></script>
     <script src="../JS/dropdownMenu.js"></script>
-    <script src="../JS/amigos.js"></script>
     <script src="../JS/botonCrearPost.js"></script>
     <script src="../JS/botonCrearEvento.js"></script>
     <script src="../JS/botonCrearGrupo.js"></script>
-    <!--<script src="../JS/botonNotificaciones.js"></script>-->
+    <script src="../JS/botonNotificaciones.js"></script>
     <script src="../JS/idioma.js"></script>
     <script src="../JS/idiomaAlmacenamiento.js"></script>
     <script src="../JS/sistemaLike.js"></script>

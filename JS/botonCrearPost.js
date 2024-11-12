@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const customButton = document.querySelector('.custom-file-upload button');
     const fileNameDisplay = document.getElementById('file-name');
     const postTitle = document.getElementById('postTitle');
-    const postsContainer = document.querySelector('.main-content');
 
     postButton.addEventListener('click', () => {
         modalPost.style.display = "block";
@@ -40,7 +39,15 @@ document.addEventListener("DOMContentLoaded", () => {
     submitPostBtn.addEventListener('click', async () => {
         const title = postTitle.value;
         const file = fileInput.files[0];
-
+    
+        if (file) {
+            const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif', 'video/mp4', 'video/avi', 'video/mpeg'];
+            if (!allowedMimeTypes.includes(file.type)) {
+                alert("Solo se permiten imágenes o videos en formatos válidos.");
+                return;
+            }
+        }
+    
         try {
             const userId = await getUserId();
             if (userId) {

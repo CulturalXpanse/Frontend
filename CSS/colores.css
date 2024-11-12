@@ -19,6 +19,8 @@
     --nav-iconos: #fff;
     --circulo-perfil: #000;
     --color-flechas: #fff;
+    --color-comentario: #f9f9f9;
+    --color-post: #363635;
 }
 
 .dark-theme{
@@ -32,4 +34,6 @@
     --nav-iconos: #fff;
     --circulo-perfil: #fff;
     --color-flechas: #B0FE76;
+    --color-comentario: #2d2d2d;
+    --color-post: #4CAF50;
 }

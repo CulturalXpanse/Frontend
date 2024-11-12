@@ -52,19 +52,19 @@ document.getElementById('editProfileForm').addEventListener('submit', async (eve
 
         console.log(data);
 
-        const modalPost = document.getElementById("editProfileModal");
-        modalPost.style.display = "none";
+        const editProfileModal = document.getElementById("editProfileModal");
+        editProfileModal.style.display = "none";
 
-        const alertaExitosoModal = document.getElementById("alertaExitosoModal");
+        const alertaExitosoModal = document.getElementById("alertaExitosoModalPerfil");
         alertaExitosoModal.style.display = "flex";
 
     } catch (error) {
         console.error('Error:', error);
 
-        const modalPost = document.getElementById("editProfileModal");
-        modalPost.style.display = "none";
+        const editProfileModal = document.getElementById("editProfileModal");
+        editProfileModal.style.display = "none";
 
-        const alertaNoExitosoModal = document.getElementById("alertaNoExitosoModal");
+        const alertaNoExitosoModal = document.getElementById("alertaNoExitosoModalPerfil");
         alertaNoExitosoModal.style.display = "flex";
 
         const errorMessage = document.getElementById("errorMessage");
@@ -88,21 +88,42 @@ document.querySelectorAll('.tab-button').forEach(button => {
 
 
 // Logica para abrir el modal del Editor de Perfil
-const modalPost = document.getElementById("editProfileModal");
-const openModalPostBtn = document.getElementById("openModalEditPerfilBtn");
-const closeModalPostBtn = document.getElementsByClassName("closeEditarPerfil")[0];
+const editProfileModal = document.getElementById("editProfileModal");
+const openModalEditPerfilBtn = document.getElementById("openModalEditPerfilBtn");
+const closeEditarPerfil = document.getElementsByClassName("closeEditarPerfil")[0];
 
-openModalPostBtn.onclick = function() {
-    modalPost.style.display = "block";
-}
+openModalEditPerfilBtn.onclick = async function() {
+    editProfileModal.style.display = "block";
 
-closeModalPostBtn.onclick = function() {
-    modalPost.style.display = "none";
+    try {
+        const response = await fetch('http://localhost:8000/api/usuario/actual', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        });
+
+        const userData = await response.json();
+
+        if (response.ok) {
+            document.getElementById('username').value = userData.name || '';
+            document.getElementById('fullName').value = userData.nombre_completo || '';
+            document.getElementById('bio').value = userData.biografia || '';
+        } else {
+            throw new Error('No se pudo cargar el perfil');
+        }
+    } catch (error) {
+        console.error('Error al cargar los datos del perfil:', error);
+    }
+};
+
+closeEditarPerfil.onclick = function() {
+    editProfileModal.style.display = "none";
 }
 
 window.onclick = function(event) {
-    if (event.target == modalPost) {
-        modalPost.style.display = "none";
+    if (event.target == editProfileModal) {
+        editProfileModal.style.display = "none";
     }
 }
 
@@ -118,6 +139,7 @@ async function cargarCiudades() {
         option.textContent = ciudad.nombre;
         ciudadSelect.appendChild(option);
     });
+
 }
 
 window.onload = cargarCiudades;
@@ -129,6 +151,18 @@ document.getElementById('ciudad').addEventListener('change', async (event) => {
 
     document.getElementById('pais').value = ciudadData.pais ? ciudadData.pais.nombre : '';
 });
+
+// Alerta Perfil exitosa
+const closeAlertaExitosoModalPerfilBtn = document.getElementById("cerrarModalAlertaPerfil");
+closeAlertaExitosoModalPerfilBtn.onclick = function() {
+    cerrarModal("alertaExitosoModalPerfil");
+};
+
+// Alerta Perfil no exitosa
+const closeAlertaNoExitosoModalPerfilBtn = document.getElementById("cerrarModalAlertaNoPerfil");
+closeAlertaNoExitosoModalPerfilBtn.onclick = function() {
+    cerrarModal("alertaNoExitosoModalPerfil");
+};
 
 
 // Alerta exitosa

@@ -50,7 +50,7 @@
         localStorage.setItem("theme", "light");
     }
 
-    const dots = document.querySelectorAll('.dots');
+/*  const dots = document.querySelectorAll('.dots');
 
     dots.forEach(dot => {
         dot.addEventListener('click', function(event) {
@@ -66,3 +66,5 @@
             dropdown.classList.remove('show');
         });
     });
+    
+*/
