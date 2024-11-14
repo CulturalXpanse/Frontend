@@ -106,7 +106,7 @@
                 <h4><span data-trad="vive">Vive en:</span> <span class="ciudad">Cargando...</span> - <span class="pais">Cargando...</span></h4>
                 <h4><span data-trad="nacio">Nació:</span> <span class="fecha-nacimiento">Cargando...</span></h4>
                 <p class="user-bio biografia">Cargando...</p>
-                <button id="openModalEditPerfilBtn" class="edit-profile-btn">Editar Perfil</button>
+                <button id="openModalEditPerfilBtn" class="edit-profile-btn" data-trad="editarPerfil">Editar Perfil</button>
             </div>                
         </section>
 
@@ -218,14 +218,14 @@
     <div id="commentModal" class="modalComentario" style="display: none;">
         <div class="modal-contentComentario">
             <span class="closeComentario" id="closeModalComentario">&times;</span>
-            <h2>Comentarios</h2>
+            <h2 data-trad="comentarios">Comentarios</h2>
             <!-- Sección de comentarios -->
             <div id="comentariosContainer" class="comments-section">
                 <!------Comentarios------>
             </div>
             <!-- Caja de texto para el comentario -->
-            <textarea id="commentInput" placeholder="Escribe tu comentario aquí..."></textarea>
-            <button class="comentar-btn" id="submitComment">Enviar Comentario</button>
+            <textarea id="commentInput" data-trad="escribeComentario" placeholder="Escribe tu comentario aquí..."></textarea>
+            <button class="comentar-btn" id="submitComment" data-trad="enviarComentario">Enviar Comentario</button>
         </div>
     </div>       
     <!---------Crear Post--------->
@@ -245,6 +245,32 @@
                 <div class="modal-actions">
                     <button type="button" id="submit-post" data-trad="publicar">Publicar</button>
                     <button type="button" class="cancel-post" data-trad="cancelar">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!----------Crear Evento---------->
+    <div id="event-modal" class="modalPost">
+        <div class="modal-contentPost">
+            <span class="closeEvent">&times;</span>
+            <h2 class="creoPost" data-trad="crearEvento">Crear nuevo evento</h2>
+            <form>
+                <input type="text" id="eventName" placeholder="Nombre del evento" required>
+                <textarea id="eventDescription" placeholder="Descripción del evento" rows="4" required></textarea>
+                <label for="fechaInicio" data-trad="fechaInicio">Fecha de inicio del evento:</label>
+                <input type="datetime-local" id="eventStartDate" required>
+                <label for="fechaFin" data-trad="fechaFin">Fecha de finalizacion del evento:</label>
+                <input type="datetime-local" id="eventEndDate" required>
+                <div class="custom-file-upload-evento">
+                    <span id="event-file-name" data-trad="ningunArchivoSelec">Ningún archivo seleccionado</span>
+                    <label for="eventFileInput">
+                        <button type="button"><i class="fa-solid fa-upload fa-2x1"></i></button>
+                    </label>
+                    <input type="file" id="eventFileInput" style="display: none;">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" id="submit-event" data-trad="crearEvento">Crear Evento</button>
+                    <button type="button" class="cancel-event" data-trad="cancelar">Cancelar</button>
                 </div>
             </form>
         </div>

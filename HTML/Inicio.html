@@ -41,20 +41,47 @@
                         <i class="fa-solid fa-users-rectangle fa-xl grupo-button" id="grupo-icon" alt="Boton Grupo"></i>
                     </li>
                     <li>
-                        <!---------Notificaciones---------->
+                        <!---------Notificaciones----------> 
                         <i class="fa-regular fa-bell fa-xl" id="notification-icon" onclick="notificationMenuToggle()" alt="Boton Notificaciones"></i>
                         <div id="notification-menu" class="notification-menu">
                             <div class="notification-item">
-                                <p data-trad="noNotificaciones">No tienes nuevas notificaciones.</p>
+                                <p>Usuario te envió solicitud de amistad.</p>
                             </div>
                             <div class="notification-item">
-                                <p>Usuario te envio solicitud de amistad.</p>
+                                <p>Usuario te envió solicitud de amistad.</p>
                             </div>
                             <div class="notification-item">
-                                <p>Usuario le dio like a tu post.</p>
+                                <p>Usuario te envió solicitud de amistad.</p>
                             </div>
                             <div class="notification-item">
-                                <p>Usuario entro al Grupo</p>
+                                <p>Usuario te envió solicitud de amistad.</p>
+                            </div>
+                            <div class="notification-item">
+                                <p>Usuario te envió solicitud de amistad.</p>
+                            </div>
+                            <div class="notification-item">
+                                <p>Usuario te envió solicitud de amistad.</p>
+                            </div>
+                            <div class="notification-item">
+                                <p>Usuario te envió solicitud de amistad.</p>
+                            </div>
+                            <div class="notification-item">
+                                <p>Usuario te envió solicitud de amistad.</p>
+                            </div>
+                            <div class="notification-item">
+                                <p>Usuario te envió solicitud de amistad.</p>
+                            </div>
+                            <div class="notification-item">
+                                <p>Usuario te envió solicitud de amistad.</p>
+                            </div>
+                            <div class="notification-item">
+                                <p>Usuario te envió solicitud de amistad.</p>
+                            </div>
+                            <div class="notification-item">
+                                <p>Usuario te envió solicitud de amistad.</p>
+                            </div>
+                            <div class="notification-item">
+                                <p>Usuario te envió solicitud de amistad.</p>
                             </div>
                         </div>
                     </li>
@@ -116,55 +143,21 @@
     <div class="right-sidebar">
         <div class="sidebar-title">
             <!---------Eventos--------->
-            <h4 data-trad="eventos">Eventos</h4>
-            <a href="#" data-trad="verTodos">Ver todos</a>
-        </div>
-        <div class="event">
-            <div class="left-event">
-                <h3>18</h3>
-                <span>Marzo</span>
-            </div>
-            <div class="right-event">
-                <h4>Evento 1</h4>
-                <p><i class="fas fa-map-marker-alt"></i> Ubicacion</p>
-                <a href="#" data-trad="masInfo">Mas info</a>
-            </div>
-        </div>
-        <div class="event">
-            <div class="left-event">
-                <h3>22</h3>
-                <span>Marzo</span>
-            </div>
-            <div class="right-event">
-                <h4>Evento 2</h4>
-                <p><i class="fas fa-map-marker-alt"></i> Ubicacion</p>
-                <a href="#" data-trad="masInfo">Mas info</a>
-            </div>
+            <h4><i class="fa-solid fa-calendar-days"></i><span data-trad="eventos">Eventos</span></h4>
+            <button data-trad="verTodos" onclick="abrirModalEventos()">Ver todos</button>
         </div>
         <div class="linea"></div>
         <!---------Grupos--------->
-        <div class="friends">
+        <div class="grupo">
             <h4><i class="fa-solid fa-people-group"></i><p data-trad="grupos">Grupos</p></h4>
         </div>
         <div class="group-list">
-            <a href="../HTML/grupo.html">
-                <div class="group">
-                    <img src="../Img/perfilDefault.png" alt="Grupo 1">
-                    <p>Grupo</p>
+            <div class="group">
+                <div class="foto-grupo-container">
+                    <img src="${imgSrcPerfil}" class="foto-grupo" alt="Foto de grupo de ${grupoName}"/>
                 </div>
-            </a>
-            <a href="../HTML/grupo.html">
-                <div class="group">
-                    <img src="../Img/perfilDefault.png" alt="Grupo 2">
-                    <p>Grupo</p>
-                </div>
-            </a>
-            <a href="../HTML/grupo.html">
-                <div class="group">
-                    <img src="../Img/perfilDefault.png" alt="Grupo 3">
-                    <p>Grupo</p>
-                </div>
-            </a>
+                <a><p>Grupo ${grupoName}</p></a>
+            </div>
         </div>
         <div class="linea"></div>
         <!---------Publicidad--------->
@@ -172,6 +165,13 @@
             <h4 data-trad="publicidad">Publicidad</h4>
         </div>
         <img src="../Img/advertisement.png" class="sidebar-ads" alt="Publicidad">
+    </div>
+    <div id="modalVerEventos" class="modalVerEventos">
+        <div class="modal-contentVerEventos">
+            <span class="closeVerEventos" id="closeModalVerEventos">&times;</span>
+            <h2>Eventos</h2>
+            <div id="verEventos-container" class="verEventos-container"></div>
+        </div>
     </div>
     <!---------Click derecho---------->
     <div id="context-menu">
@@ -206,14 +206,14 @@
     <div id="commentModal" class="modalComentario" style="display: none;">
         <div class="modal-contentComentario">
             <span class="closeComentario" id="closeModalComentario">&times;</span>
-            <h2>Comentarios</h2>
+            <h2 data-trad="comentarios">Comentarios</h2>
             <!-- Sección de comentarios -->
             <div id="comentariosContainer" class="comments-section">
                 <!------Comentarios------>
             </div>
             <!-- Caja de texto para el comentario -->
-            <textarea id="commentInput" placeholder="Escribe tu comentario aquí..."></textarea>
-            <button class="comentar-btn" id="submitComment">Enviar Comentario</button>
+            <textarea id="commentInput" data-trad="escribeComentario" placeholder="Escribe tu comentario aquí..."></textarea>
+            <button class="comentar-btn" id="submitComment" data-trad="enviarComentario">Enviar Comentario</button>
         </div>
     </div>       
     <!---------Crear Post--------->
@@ -222,7 +222,8 @@
             <span class="closePosteando">&times;</span>
             <h2 class="creoPost" data-trad="crearPost">Crear nuevo post</h2>
             <form>
-                <textarea id="postTitle" placeholder="Escribe un titulo o lo que quieras..." rows="4"></textarea>
+                <label for="fechaFin" data-trad="escribePost">Escribe un titulo o lo que quieras...</label>
+                <textarea id="postTitle" rows="4"></textarea>
                 <div class="custom-file-upload">
                     <span id="file-name" data-trad="ningunArchivoSelec">Ningún archivo seleccionado</span>
                     <label for="fileInput">
@@ -238,25 +239,31 @@
         </div>
     </div>
     <!----------Crear Evento---------->
-    <div id="event-modal" class="modalPost">
-        <div class="modal-contentPost">
+    <div id="event-modal" class="modalEvent">
+        <div class="modal-contentEvent">
             <span class="closeEvent">&times;</span>
-            <h2 class="creoPost" data-trad="crearEvento">Crear nuevo evento</h2>
+            <h2 class="creoEvent" data-trad="crearEvento">Crear nuevo evento</h2>
             <form>
-                <input type="text" id="eventName" placeholder="Nombre del evento" required>
-                <textarea id="eventDescription" placeholder="Descripción del evento" rows="4" required></textarea>
-                <input type="datetime-local" id="eventStartDate" required>
-                <input type="datetime-local" id="eventEndDate" required>
-                <div class="custom-file-upload-evento">
-                    <span id="event-file-name" data-trad="ningunArchivoSelec">Ningún archivo seleccionado</span>
-                    <label for="eventFileInput">
-                        <button type="button"><i class="fa-solid fa-upload fa-2x1"></i></button>
-                    </label>
-                    <input type="file" id="eventFileInput" style="display: none;">
-                </div>
-                <div class="modal-actions">
-                    <button type="button" id="submit-event" data-trad="crearEvento">Crear Evento</button>
-                    <button type="button" class="cancel-event" data-trad="cancelar">Cancelar</button>
+                <div class="evento-form">
+                    <label for="fechaFin" data-trad="nombreEvento">Nombre del evento</label>
+                    <input type="text" id="eventName" required>
+                    <label for="fechaFin" data-trad="descripcionEvento">Descripción del evento</label>
+                    <textarea id="eventDescription" rows="4" required></textarea>
+                    <label for="fechaInicio" data-trad="fechaInicio">Fecha de inicio del evento</label>
+                    <input type="datetime-local" id="eventStartDate" required>
+                    <label for="fechaFin" data-trad="fechaFin">Fecha de finalizacion del evento</label>
+                    <input type="datetime-local" id="eventEndDate" required>
+                    <div class="custom-file-upload-evento">
+                        <span id="event-file-name" data-trad="ningunArchivoSelec">Ningún archivo seleccionado</span>
+                        <label for="eventFileInput">
+                            <button type="button"><i class="fa-solid fa-upload fa-2x1"></i></button>
+                        </label>
+                        <input type="file" id="eventFileInput" style="display: none;">
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" id="submit-event" data-trad="crearEvento">Crear Evento</button>
+                        <button type="button" class="cancel-event" data-trad="cancelar">Cancelar</button>
+                    </div>
                 </div>
             </form>
         </div>
@@ -284,6 +291,22 @@
             <h2 data-trad="error">¡Error!</h2>
             <p data-trad="problemaPost">Hubo un problema al hacer la publicacion.</p>
             <button id="cerrarModalAlertaNo" class="button" data-trad="aceptar">Aceptar</button>
+        </div>
+    </div>
+    <!--------------Evento-Creado-Exitosamente-------------->
+    <div id="alertaExitosoModalEvento" class="modalAlerta">
+        <div class="modal-contentAlerta">   
+            <h2 data-trad="publicado">¡Evento publicado!</h2>
+            <p data-trad="correctamentePost">Evento publicado con exito.</p>
+            <button id="cerrarModalAlertaEvento" class="button" data-trad="aceptar">Aceptar</button>
+        </div>
+    </div>
+    <!--------------Evento-No-Creado-Exitosamente-------------->
+    <div id="alertaNoExitosoModalEvento" class="modalAlerta">
+        <div class="modal-contentAlerta">
+            <h2 data-trad="error">¡Error!</h2>
+            <p data-trad="problemaPost">Hubo un problema al hacer el evento.</p>
+            <button id="cerrarModalAlertaNoEvento" class="button" data-trad="aceptar">Aceptar</button>
         </div>
     </div>
     <!----Barra de abajo para iconos en telefono---->
@@ -339,6 +362,7 @@
     <script src="../JS/sistemaLike.js"></script>
     <script src="../JS/sistemaComentarios.js"></script>
     <!--<script src="../JS/sistemaCompartir.js"></script>-->
+    <script src="../JS/verEventos.js"></script>
     <script src="../JS/chat.js"></script>
     <script src="../JS/clickDerecho.js"></script>
     <script src="../JS/cerrarSesion.js"></script>

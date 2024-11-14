@@ -1,30 +1,45 @@
 const likes = {};
 
-const toggleLike = (postId) => {
+const toggleLike = async (postId) => {
     const likeBtn = document.getElementById(`likeBtn-${postId}`);
-    const likeCount = document.getElementById(`likeCount-${postId}`);
+    const likeCount = document.getElementById(`likeCount_${postId}`);
 
     if (!likes[postId]) {
         likes[postId] = false;
     }
 
     if (likes[postId]) {
-        // Si el like ya existe, eliminamos el like
+        // Si el like ya existe, intentamos eliminarlo
         likes[postId] = false;
         likeCount.textContent = parseInt(likeCount.textContent) - 1;
         likeBtn.classList.remove("fa-solid");
         likeBtn.classList.add("fa-regular");
-        eliminarLike(postId);
+
+        const success = await eliminarLike(postId);
+        if (!success) {
+            // Si falla, revertimos los cambios en la interfaz
+            likes[postId] = true;
+            likeCount.textContent = parseInt(likeCount.textContent) + 1;
+            likeBtn.classList.remove("fa-regular");
+            likeBtn.classList.add("fa-solid");
+        }
     } else {
-        // Si el like no existe, lo agregamos
+        // Si el like no existe, intentamos agregarlo
         likes[postId] = true;
         likeCount.textContent = parseInt(likeCount.textContent) + 1;
         likeBtn.classList.remove("fa-regular");
         likeBtn.classList.add("fa-solid");
-        guardarLike(postId);
-    }
 
-}
+        const success = await guardarLike(postId);
+        if (!success) {
+            // Si falla, revertimos los cambios en la interfaz
+            likes[postId] = false;
+            likeCount.textContent = parseInt(likeCount.textContent) - 1;
+            likeBtn.classList.remove("fa-solid");
+            likeBtn.classList.add("fa-regular");
+        }
+    }
+};
 
 const guardarLike = async (postId) => {
     const token = localStorage.getItem('accessToken');
@@ -32,29 +47,34 @@ const guardarLike = async (postId) => {
 
     if (!userId) {
         alert("No se pudo obtener el ID del usuario.");
-        return;
+        return false;
     }
 
-    fetch('http://localhost:8001/api/likes', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-            user_id: userId,
-            post_id: postId,
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.message === 'Like guardado correctamente') {
+    try {
+        const response = await fetch('http://localhost:8001/api/likes', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+                user_id: userId,
+                post_id: postId,
+            })
+        });
+        const data = await response.json();
+
+        if (response.ok && data.message === 'Like guardado correctamente') {
             console.log('Like registrado con éxito');
+            return true;
         } else {
             alert(data.message);
+            return false;
         }
-    })
-    .catch(error => console.error('Error al guardar el like:', error));
+    } catch (error) {
+        console.error('Error al guardar el like:', error);
+        return false;
+    }
 };
 
 const eliminarLike = async (postId) => {
@@ -63,29 +83,34 @@ const eliminarLike = async (postId) => {
 
     if (!userId) {
         alert("No se pudo obtener el ID del usuario.");
-        return;
+        return false;
     }
 
-    fetch('http://localhost:8001/api/likes', {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-            user_id: userId,
-            post_id: postId,
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.message === 'Like eliminado correctamente') {
+    try {
+        const response = await fetch('http://localhost:8001/api/likes', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+                user_id: userId,
+                post_id: postId,
+            })
+        });
+        const data = await response.json();
+
+        if (response.ok && data.message === 'Like eliminado correctamente') {
             console.log('Like eliminado con éxito');
+            return true;
         } else {
             alert(data.message);
+            return false;
         }
-    })
-    .catch(error => console.error('Error al eliminar el like:', error));
+    } catch (error) {
+        console.error('Error al eliminar el like:', error);
+        return false;
+    }
 };
 
 const obtenerLikesUsuario = async () => {
@@ -109,12 +134,11 @@ const obtenerLikesUsuario = async () => {
             data.likes.forEach(like => {
                 likes[like.post_id] = true;
                 const likeBtn = document.getElementById(`likeBtn-${like.post_id}`);
-                const likeCount = document.getElementById(`likeCount-${like.post_id}`);
+                const likeCount = document.getElementById(`likeCount_${like.post_id}`);
                 
                 if (likeBtn && likeCount) {
                     likeBtn.classList.remove("fa-regular");
                     likeBtn.classList.add("fa-solid");
-                    likeCount.textContent = parseInt(likeCount.textContent) + 1;
                 }
             });
         }
@@ -124,23 +148,34 @@ const obtenerLikesUsuario = async () => {
 
 document.addEventListener("DOMContentLoaded", obtenerLikesUsuario);
 
-async function obtenerLikesGlobales() {
+async function obtenerLikesCount() {
+    const token = localStorage.getItem('accessToken');
     try {
-        const response = await fetch('http://localhost:8001/api/likes/global');
+        const response = await fetch('http://localhost:8001/api/posts/likes/count', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al obtener el conteo de likes');
+        }
+
         const data = await response.json();
 
-        data.likes.forEach(like => {
-            const likeCountElement = document.getElementById(`likeCount-${like.post_id}`);
+        data.forEach((likes) => {
+            const likeCountElement = document.getElementById(`likeCount_${likes.post_id}`);
             if (likeCountElement) {
-                likeCountElement.textContent = like.total_likes;
+                likeCountElement.textContent = likes.total_likes || 0;
             }
         });
     } catch (error) {
-        console.error('Error al obtener los likes globales:', error);
+        console.error('Error al obtener los likes:', error);
     }
 }
 
-document.addEventListener('DOMContentLoaded', obtenerLikesGlobales);
+document.addEventListener('DOMContentLoaded', obtenerLikesCount);
 
 async function getUserId() {
     const token = localStorage.getItem('accessToken');

@@ -1,3 +1,5 @@
+let currentUserId = null;
+
 async function obtenerPerfilUsuario() {
     try {
         const response = await fetch('http://localhost:8000/api/usuario/actual', {
@@ -12,6 +14,7 @@ async function obtenerPerfilUsuario() {
         }
 
         const data = await response.json();
+        currentUserId = data.id;
 
         document.querySelector('.nombre-usuario').textContent = data.name;
 
@@ -36,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function cargarElementos() {
     try {
-        const response = await fetch('http://localhost:8001/api/elementos');
+        const response = await fetch('http://localhost:8001/api/posts-y-eventos/1');
         if (!response.ok) throw new Error('Error al cargar los elementos');
 
         const elementos = await response.json();
@@ -50,11 +53,10 @@ async function cargarElementos() {
 
             const imgSrcPerfil = elemento.user && elemento.user.foto_perfil
                 ? `http://localhost:8000/imagenes/perfiles/${elemento.user.foto_perfil}`
-                : 'default-profile.png';
+                : '../Img/default-profile.png';
             const userName = elemento.user && elemento.user.name ? elemento.user.name : 'Usuario desconocido';
             const fecha = elemento.created_at;
 
-            // Cabecera de usuario y menú
             elementoContainer.innerHTML = `
                 <div class="post-row">
                     <div class="user-profile">
@@ -66,32 +68,28 @@ async function cargarElementos() {
                             <span id="fechaPublicacion">${fecha}</span>
                         </div>
                     </div>
-                    <div class="menuDots" data-user-id="${elemento.id}">
-                        <a class="dots" style="cursor: pointer;">
+                    <div class="menuDots">
+                        <a class="dots" href="javascript:void(0);">
                             <i class="fa-solid fa-ellipsis"></i>
                         </a>
-                        <div class="dropdown-contentDots">
-                            <a class="view-profile" href="#">Ver perfil</a>
+                        <div class="dropdown-content">
+                            <a id="verPerfilBtn" data-user-id="${elemento.user_id}">Ver Perfil</a>
                         </div>
                     </div>
                 </div>
             `;
 
-            // Renderizado específico para posts y eventos
             if (elemento.tipo === 'post') {
-                // Comprobar si el título contiene un enlace de YouTube
                 let postContent = elemento.titulo;
                 const youtubeRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})(?:\S+)?/;
                 const youtubeMatch = postContent.match(youtubeRegex);
 
                 if (youtubeMatch) {
                     const videoId = youtubeMatch[1];
-                    postContent = postContent.replace(youtubeRegex, ''); // Quitar el enlace
+                    postContent = postContent.replace(youtubeRegex, '');
 
-                    // Agregar el texto sin el enlace
                     elementoContainer.innerHTML += `<p class="post-text">${postContent.trim()}</p>`;
 
-                    // Agregar el video de YouTube
                     elementoContainer.innerHTML += `
                         <div class="post-media-container">
                             <iframe class="post-media" width="100%" height="400" 
@@ -101,11 +99,9 @@ async function cargarElementos() {
                         </div>
                     `;
                 } else {
-                    // Agregar el texto del post si no contiene un enlace de YouTube
                     elementoContainer.innerHTML += `<p class="post-text">${postContent}</p>`;
                 }
 
-                // Mostrar imagen o video si el post lo tiene
                 if (elemento.contenido) {
                     const extension = elemento.contenido.split('.').pop().toLowerCase();
                     if (['mp4', 'webm', 'ogg'].includes(extension)) {
@@ -124,11 +120,10 @@ async function cargarElementos() {
                     }
                 }
             } else if (elemento.tipo === 'evento') {
-                // Renderizado específico para eventos
                 elementoContainer.innerHTML += `
                     <p class="evento-nombre">${elemento.nombre}</p>
                     <p class="evento-descripcion">${elemento.descripcion || ''}</p>
-                    <p class="evento-fechas"><span data-trad="fechaInicio">Inicio</span>: ${elemento.fecha_inicio} - <span class="fechaFin">Fin</span>: ${elemento.fecha_fin}</p>
+                    <p class="evento-fechas"> ${elemento.fecha_inicio} - ${elemento.fecha_fin}</p>
                 `;
                 if (elemento.foto) {
                     elementoContainer.innerHTML += `
@@ -140,33 +135,59 @@ async function cargarElementos() {
                 }
             }
 
-            // Iconos de actividad (like, comment, share)
-            if (elemento.tipo === 'post'){
-            elementoContainer.innerHTML += `
-                <div class="post-row">
-                    <div class="activity-icons">
-                        <div>
-                            <i id="likeBtn-${elemento.id}" class="fa-regular fa-thumbs-up fa-xl icono" onclick="toggleLike('${elemento.id}')"></i>
-                            <span id="likeCount-${elemento.id}">0</span>
-                        </div>   
-                        <div>
-                            <i id="openCommentModal-${elemento.id}" class="fa-solid fa-comment fa-xl icono" onclick="abrirModalComentarios('${elemento.id}')"></i>
-                            <span id="comentariosCount_${elemento.id}">0</span>
-                        </div>
-                        <div>
-                            <i id="openShareModal" class="fa-solid fa-share fa-xl icono" onclick="openShareModal()"></i>
+            if (elemento.tipo === 'post') {
+                elementoContainer.innerHTML += `
+                    <div class="post-row">
+                        <div class="activity-icons">
+                            <div>
+                                <i id="likeBtn-${elemento.id}" class="fa-regular fa-thumbs-up fa-xl icono" onclick="toggleLike(${elemento.id})"></i>
+                                <span id="likeCount_${elemento.id}">0</span>
+                            </div>   
+                            <div>
+                                <i id="openCommentModal-${elemento.id}" class="fa-solid fa-comment fa-xl icono" onclick="abrirModalComentarios('${elemento.id}')"></i>
+                                <span id="comentariosCount_${elemento.id}">0</span>
+                            </div>
+                            <div>
+                                <i id="openShareModal" class="fa-solid fa-share fa-xl icono" onclick="openShareModal()"></i>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `;
-        }
+                `;
+            }
 
             mainContent.appendChild(elementoContainer);
         });
+
+        const dots = document.querySelectorAll('.dots');
+        dots.forEach(dot => {
+            dot.addEventListener('click', function(event) {
+                const dropdown = this.nextElementSibling;
+                dropdown.classList.toggle('show');
+                event.stopPropagation();
+            });
+        });
+
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.menuDots')) {
+                document.querySelectorAll('.dropdown-content.show').forEach(dropdown => {
+                    dropdown.classList.remove('show');
+                });
+            }
+        });
+
+        const verPerfilBtns = document.querySelectorAll('#verPerfilBtn');
+        verPerfilBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const userId = this.getAttribute('data-user-id');
+                window.location.href = `perfilUsuario.html?id=${userId}`; 
+            });
+        });
+
     } catch (error) {
         console.error('Error al cargar los elementos:', error);
     }
 }
+
 
 document.addEventListener('DOMContentLoaded', () => {
     obtenerPerfilUsuario();

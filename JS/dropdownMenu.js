@@ -20,7 +20,9 @@
     
     window.onclick = function(event) {
         const notificationMenu = document.getElementById('notification-menu');
-        if (!event.target.matches('#notification-icon')) {
+        const notificationIcon = document.getElementById('notification-icon');
+    
+        if (!notificationIcon.contains(event.target) && !notificationMenu.contains(event.target)) {
             if (notificationMenu.classList.contains('active')) {
                 notificationMenu.classList.remove('active');
             }
@@ -49,22 +51,3 @@
     else{
         localStorage.setItem("theme", "light");
     }
-
-/*  const dots = document.querySelectorAll('.dots');
-
-    dots.forEach(dot => {
-        dot.addEventListener('click', function(event) {
-            const dropdown = this.nextElementSibling;
-            dropdown.classList.toggle('show');
-            event.stopPropagation();
-        });
-    });
-
-    document.addEventListener('click', () => {
-        dots.forEach(dot => {
-            const dropdown = dot.nextElementSibling;
-            dropdown.classList.remove('show');
-        });
-    });
-    
-*/

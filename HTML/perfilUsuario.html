@@ -139,6 +139,12 @@
                 </div>
         </section>
     </div>
+        <!---------Click derecho---------->
+        <div id="context-menu">
+            <ul>
+                <li id="view-profile">Ver perfil</li>
+            </ul>
+        </div>
     <!---------Compartir Post--------->
     <!--<div id="shareModal" class="modalCompartir">
         <div class="modal-contentCompartir">
@@ -152,14 +158,14 @@
     <div id="commentModal" class="modalComentario" style="display: none;">
         <div class="modal-contentComentario">
             <span class="closeComentario" id="closeModalComentario">&times;</span>
-            <h2>Comentarios</h2>
+            <h2 data-trad="comentarios">Comentarios</h2>
             <!-- Sección de comentarios -->
             <div id="comentariosContainer" class="comments-section">
                 <!------Comentarios------>
             </div>
             <!-- Caja de texto para el comentario -->
-            <textarea id="commentInput" placeholder="Escribe tu comentario aquí..."></textarea>
-            <button class="comentar-btn" id="submitComment">Enviar Comentario</button>
+            <textarea id="commentInput" data-trad="escribeComentario" placeholder="Escribe tu comentario aquí..."></textarea>
+            <button class="comentar-btn" id="submitComment" data-trad="enviarComentario">Enviar Comentario</button>
         </div>
     </div>       
     <!---------Crear Post--------->
@@ -183,6 +189,32 @@
             </form>
         </div>
     </div>
+    <!----------Crear Evento---------->
+    <div id="event-modal" class="modalPost">
+        <div class="modal-contentPost">
+            <span class="closeEvent">&times;</span>
+            <h2 class="creoPost" data-trad="crearEvento">Crear nuevo evento</h2>
+            <form>
+                <input type="text" id="eventName" placeholder="Nombre del evento" required>
+                <textarea id="eventDescription" placeholder="Descripción del evento" rows="4" required></textarea>
+                <label for="fechaInicio" data-trad="fechaInicio">Fecha de inicio del evento:</label>
+                <input type="datetime-local" id="eventStartDate" required>
+                <label for="fechaFin" data-trad="fechaFin">Fecha de finalizacion del evento:</label>
+                <input type="datetime-local" id="eventEndDate" required>
+                <div class="custom-file-upload-evento">
+                    <span id="event-file-name" data-trad="ningunArchivoSelec">Ningún archivo seleccionado</span>
+                    <label for="eventFileInput">
+                        <button type="button"><i class="fa-solid fa-upload fa-2x1"></i></button>
+                    </label>
+                    <input type="file" id="eventFileInput" style="display: none;">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" id="submit-event" data-trad="crearEvento">Crear Evento</button>
+                    <button type="button" class="cancel-event" data-trad="cancelar">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>  
     <!---------Cambiar Idioma--------->
     <div id="languageModal" class="modalIdioma">
         <div class="modal-content">
@@ -206,6 +238,54 @@
             <h2 data-trad="error">¡Error!</h2>
             <p data-trad="problemaPost">Hubo un problema al hacer la publicacion.</p>
             <button id="cerrarModalAlertaNo" class="button" data-trad="aceptar">Aceptar</button>
+        </div>
+    </div>
+    <!--------------Evento-Creado-Exitosamente-------------->
+    <div id="alertaExitosoModalEvento" class="modalAlerta">
+        <div class="modal-contentAlerta">   
+            <h2 data-trad="publicado">¡Evento publicado!</h2>
+            <p data-trad="correctamentePost">Evento publicado con exito.</p>
+            <button id="cerrarModalAlertaEvento" class="button" data-trad="aceptar">Aceptar</button>
+        </div>
+    </div>
+    <!--------------Evento-No-Creado-Exitosamente-------------->
+    <div id="alertaNoExitosoModalEvento" class="modalAlerta">
+        <div class="modal-contentAlerta">
+            <h2 data-trad="error">¡Error!</h2>
+            <p data-trad="problemaPost">Hubo un problema al hacer el evento.</p>
+            <button id="cerrarModalAlertaNoEvento" class="button" data-trad="aceptar">Aceptar</button>
+        </div>
+    </div>
+    <!--------------Amigo-agregado-Exitosamente-------------->
+    <div id="alertaExitosoModalAmigo" class="modalAlerta">
+        <div class="modal-contentAlerta">   
+            <h2 data-trad="nuevoAmigo">¡Nuevo amigo/a!</h2>
+            <p data-trad="correctamenteAmigo">Ahora tienes un nuevo amigo/a.</p>
+            <button id="cerrarModalAlertaAmigo" class="button" data-trad="aceptar">Aceptar</button>
+        </div>
+    </div>
+    <!--------------Amigo-no-agregado-Exitosamente-------------->
+    <div id="alertaNoExitosoModalAmigo" class="modalAlerta">
+        <div class="modal-contentAlerta">
+            <h2 data-trad="error">¡Error!</h2>
+            <p data-trad="problemaAmigo">Hubo un problema al añadir nuevo amigo/a.</p>
+            <button id="cerrarModalAlertaNoAmigo" class="button" data-trad="aceptar">Aceptar</button>
+        </div>
+    </div>
+    <!--------------Amigo-agregado-Exitosamente-------------->
+    <div id="alertaExitosoModalEliminarAmigo" class="modalAlerta">
+        <div class="modal-contentAlerta">   
+            <h2 data-trad="nuevoAmigo">¡Eliminaste a tu amigo/a!</h2>
+            <p data-trad="correctamenteAmigo">Has eliminado corretamente a tu amigo/a.</p>
+            <button id="cerrarModalAlertaEliminarAmigo" class="button" data-trad="aceptar">Aceptar</button>
+        </div>
+    </div>
+    <!--------------Amigo-no-agregado-Exitosamente-------------->
+    <div id="alertaNoExitosoModalEliminarAmigo" class="modalAlerta">
+        <div class="modal-contentAlerta">
+            <h2 data-trad="error">¡Error!</h2>
+            <p data-trad="problemaAmigo">Hubo un problema al eliminar a tu amigo/a.</p>
+            <button id="cerrarModalAlertaNoEliminarAmigo" class="button" data-trad="aceptar">Aceptar</button>
         </div>
     </div>
     <!----Barra de abajo para iconos en telefono---->
@@ -253,8 +333,7 @@
     <script src="../JS/sistemaLike.js"></script>
     <script src="../JS/sistemaComentarios.js"></script>
     <!--<script src="../JS/sistemaCompartir.js"></script>-->
-    <script src="../JS/chat.js"></script>
-    <script src="../JS/clickDerecho.js"></script>
+    <!--<script src="../JS/chat.js"></script>-->
     <script src="../JS/cerrarSesion.js"></script>
 </body>
 </html>

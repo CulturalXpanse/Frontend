@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('view-profile').addEventListener('click', () => {
         if (selectedUserId) {
-            window.location.href = `perfil-usuario.html?id=${selectedUserId}`;
+            window.location.href = `perfilUsuario.html?id=${selectedUserId}`;
         }
     });
 

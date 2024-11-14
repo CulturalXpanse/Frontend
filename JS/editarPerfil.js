@@ -129,20 +129,30 @@ window.onclick = function(event) {
 
 // Logica para cargar las ciudades en el Editor de Perfil
 async function cargarCiudades() {
-    const response = await fetch('http://localhost:8000/api/ciudades');
-    const ciudades = await response.json();
-    const ciudadSelect = document.getElementById('ciudad');
-    
-    ciudades.forEach(ciudad => {
-        const option = document.createElement('option');
-        option.value = ciudad.id;
-        option.textContent = ciudad.nombre;
-        ciudadSelect.appendChild(option);
-    });
+    try {
+        const response = await fetch('http://localhost:8000/api/ciudades');
+        
+        if (!response.ok) {
+            throw new Error('Error al obtener las ciudades');
+        }
+        
+        const ciudades = await response.json();
+        const ciudadSelect = document.getElementById('ciudad');
+        
+        ciudadSelect.innerHTML = '';
 
+        ciudades.forEach(ciudad => {
+            const option = document.createElement('option');
+            option.value = ciudad.id;
+            option.textContent = ciudad.nombre;
+            ciudadSelect.appendChild(option);
+        });
+    } catch (error) {
+        console.error('Error al cargar las ciudades:', error);
+    }
 }
 
-window.onload = cargarCiudades;
+window.addEventListener('load', cargarCiudades);
 
 document.getElementById('ciudad').addEventListener('change', async (event) => {
     const ciudadId = event.target.value;

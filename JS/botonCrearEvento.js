@@ -26,8 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
         eventFileInput.click();
     });
 
-    closeModalEventBtn.addEventListener('click', closeModalEvent);
-    cancelEventBtn.addEventListener('click', closeModalEvent);
+    closeModalEventBtn.addEventListener('click', closeModal);
+    cancelEventBtn.addEventListener('click', closeModal );
 
     eventFileInput.addEventListener('change', () => {
         const file = eventFileInput.files[0];
@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     
         try {
-            const response = await fetch('http://localhost:8001/api/eventos', {
+            const response = await fetch('http://localhost:8001/api/evento', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -107,30 +107,25 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     
             if (response.ok) {
-                cerrarModal();
-                const alertaExitosoModal = document.getElementById("alertaExitosoModal");
+                closeModal();
+                const alertaExitosoModal = document.getElementById("alertaExitosoModalEvento");
                 alertaExitosoModal.style.display = "flex";
-                clearEventForm();
-                window.location.reload();
             } else {
-                // Captura el mensaje de error detallado
-                const errorData = await response.json();
-                console.error("Error al crear el evento:", errorData); 
-                alert(`Error al crear el evento: ${errorData.mensaje || 'Error desconocido del servidor'}`);
+                throw new Error('Error al crear el post');
             }
         } catch (error) {
-            console.error("Error de conexión:", error);
-            const alertaNoExitosoModal = document.getElementById("alertaNoExitosoModal");
+            console.error(error);
+            const alertaNoExitosoModal = document.getElementById("alertaNoExitosoModalEvento");
             alertaNoExitosoModal.style.display = "flex";
         }
     }
 
-    const closeAlertaExitosoModalBtn = document.getElementById("cerrarModalAlerta");
+    const closeAlertaExitosoModalBtn = document.getElementById("cerrarModalAlertaEvento");
     closeAlertaExitosoModalBtn.onclick = function() {
         cerrarModal("alertaExitosoModal");
     };
 
-    const closeAlertaNoExitosoModalBtn = document.getElementById("cerrarModalAlertaNo");
+    const closeAlertaNoExitosoModalBtn = document.getElementById("cerrarModalAlertaNoEvento");
     closeAlertaNoExitosoModalBtn.onclick = function() {
         cerrarModal("alertaNoExitosoModal");
     };
@@ -140,12 +135,4 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.reload();
     }
 
-    function clearEventForm() {
-        document.getElementById("eventName").value = "";
-        document.getElementById("eventDescription").value = "";
-        document.getElementById("eventStartDate").value = "";
-        document.getElementById("eventEndDate").value = "";
-        eventFileInput.value = null;
-        eventFileNameDisplay.textContent = "Ningún archivo seleccionado";
-    }
 });

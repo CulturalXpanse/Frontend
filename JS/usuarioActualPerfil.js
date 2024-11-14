@@ -73,14 +73,6 @@ async function cargarPostsYEventosPerfil(usuarioId) {
                             <span id="fechaPublicacion">${fecha}</span>
                         </div>
                     </div>
-                    <div class="menuDots" data-user-id="${elemento.id}">
-                        <a class="dots" style="cursor: pointer;">
-                            <i class="fa-solid fa-ellipsis"></i>
-                        </a>
-                        <div class="dropdown-contentDots">
-                            <a class="view-profile" href="#">Ver perfil</a>
-                        </div>
-                    </div>
                 </div>
             `;
 
@@ -174,5 +166,30 @@ async function cargarPostsYEventosPerfil(usuarioId) {
         console.error('Error al cargar los elementos:', error);
     }
 }
+
+const dots = document.querySelectorAll('.dots');
+        dots.forEach(dot => {
+            dot.addEventListener('click', function(event) {
+                const dropdown = this.nextElementSibling;
+                dropdown.classList.toggle('show');
+                event.stopPropagation();
+            });
+        });
+
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.menuDots')) {
+                document.querySelectorAll('.dropdown-content.show').forEach(dropdown => {
+                    dropdown.classList.remove('show');
+                });
+            }
+        });
+
+        const verPerfilBtns = document.querySelectorAll('#verPerfilBtn');
+        verPerfilBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const userId = this.getAttribute('data-user-id');
+                window.location.href = `perfilUsuario.html?id=${userId}`; 
+            });
+        });
 
 document.addEventListener('DOMContentLoaded', obtenerPerfilUsuario);

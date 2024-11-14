@@ -126,7 +126,9 @@
     }
 
     /* --------Perfil-------- */
-
+    .main-content {
+        min-height: 1000px;
+    }
     .profile-header {
         flex-direction: column;
         padding: 20px;

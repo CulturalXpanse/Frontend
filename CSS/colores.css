@@ -21,6 +21,13 @@
     --color-flechas: #fff;
     --color-comentario: #f9f9f9;
     --color-post: #363635;
+    --colorNegroVerde: #000;
+    --chat-bg: #f9f9f9;
+    --message-bg: #ffffff;
+    --user-message-bg: #f1f1f1;
+    --message-user-text: #4CAF50;
+    --input-bg: #e6e6e6;
+    --lineas:#000;
 }
 
 .dark-theme{
@@ -36,4 +43,11 @@
     --color-flechas: #B0FE76;
     --color-comentario: #2d2d2d;
     --color-post: #4CAF50;
+    --colorNegroVerde: #B0FE76;
+    --chat-bg: #2e2e2e;
+    --message-bg: #424242;
+    --user-message-bg: #e0e0e0;
+    --message-user-text: #4CAF50;
+    --input-bg: #333333;
+    --lineas: transparent;
 }

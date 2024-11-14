@@ -59,7 +59,7 @@ function mostrarAmigos(amigos) {
 
         const imgSrcPerfil = amigo.foto_perfil
             ? `http://localhost:8000/imagenes/perfiles/${amigo.foto_perfil}`
-            : 'default-profile.png';
+            : '../Img/default-profile.png';
 
         const userName = amigo.name ? amigo.name : 'Usuario desconocido';
 
