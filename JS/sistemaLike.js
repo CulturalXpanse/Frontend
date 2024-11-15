@@ -87,8 +87,8 @@ const eliminarLike = async (postId) => {
     }
 
     try {
-        const response = await fetch('http://localhost:8001/api/likes', {
-            method: 'DELETE',
+        const response = await fetch('http://localhost:8001/api/likes/eliminar', {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`,
@@ -98,13 +98,13 @@ const eliminarLike = async (postId) => {
                 post_id: postId,
             })
         });
-        const data = await response.json();
 
-        if (response.ok && data.message === 'Like eliminado correctamente') {
+        if (response.ok) {
             console.log('Like eliminado con éxito');
             return true;
         } else {
-            alert(data.message);
+            const data = await response.json();
+            alert(data.mensaje);
             return false;
         }
     } catch (error) {
