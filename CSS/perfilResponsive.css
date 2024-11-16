@@ -54,26 +54,6 @@
     color: var(--nav-iconos);
     cursor: pointer;
 }
-.notification-menu {
-    position: absolute;
-    bottom: 50px;
-    right: 10px;
-    background: #fff;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    border-radius: 8px;
-    width: 250px;
-    max-height: 300px;
-    overflow-y: auto;
-    display: none;
-}
-.notification-menu .notification-item {
-    padding: 8px;
-    border-bottom: 1px solid #ddd;
-}
-.notification-menu .notification-item:last-child {
-    border-bottom: none;
-}
 @media (min-width: 1300px) and (max-width: 1920px) {
     .bottom-bar {
         display: none;

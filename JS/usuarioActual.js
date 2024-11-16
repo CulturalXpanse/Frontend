@@ -26,6 +26,8 @@ async function obtenerPerfilUsuario() {
             img.src = imgSrc;
         });
 
+        cargarElementos(currentUserId);
+
     } catch (error) {
         console.error('Error:', error);
         alert('Hubo un problema al cargar el perfil.');
@@ -37,9 +39,16 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-async function cargarElementos() {
+async function cargarElementos(currentUserId) {
     try {
-        const response = await fetch('http://localhost:8001/api/posts-y-eventos/1');
+        const response = await fetch(`http://localhost:8001/api/posts-y-eventos/${currentUserId}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+                'Content-Type': 'application/json',
+            },
+        });
+
         if (!response.ok) throw new Error('Error al cargar los elementos');
 
         const elementos = await response.json();
@@ -147,9 +156,6 @@ async function cargarElementos() {
                                 <i id="openCommentModal-${elemento.id}" class="fa-solid fa-comment fa-xl icono" onclick="abrirModalComentarios('${elemento.id}')"></i>
                                 <span id="comentariosCount_${elemento.id}">0</span>
                             </div>
-                            <div>
-                                <i id="openShareModal" class="fa-solid fa-share fa-xl icono" onclick="openShareModal()"></i>
-                            </div>
                         </div>
                     </div>
                 `;
@@ -157,6 +163,11 @@ async function cargarElementos() {
 
             mainContent.appendChild(elementoContainer);
         });
+
+        obtenerComentariosCount();
+
+        const event = new CustomEvent('postsCargados');
+        document.dispatchEvent(event);
 
         const dots = document.querySelectorAll('.dots');
         dots.forEach(dot => {
@@ -188,6 +199,33 @@ async function cargarElementos() {
     }
 }
 
+// Función para obtener la cantidad de comentarios y actualizar el contador en el frontend
+async function obtenerComentariosCount() {
+    const token = localStorage.getItem('accessToken');
+    try {
+        const response = await fetch('http://localhost:8001/api/posts/comentarios/count', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al obtener el conteo de comentarios');
+        }
+
+        const data = await response.json();
+
+        data.forEach((comentario) => {
+            const comentariosCountElement = document.getElementById(`comentariosCount_${comentario.post_id}`);
+            if (comentariosCountElement) {
+                comentariosCountElement.textContent = comentario.comentarios_count || 0;
+            }
+        });
+    } catch (error) {
+        console.error('Error al obtener los comentarios:', error);
+    }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     obtenerPerfilUsuario();

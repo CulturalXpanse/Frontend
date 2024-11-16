@@ -65,7 +65,7 @@ function mostrarAmigos(amigos) {
 
         amigoElement.innerHTML = `
             <div class="foto-perfil-container">
-                <img src="${imgSrcPerfil}" class="foto-perfil" alt="Foto de perfil de ${userName}"/>
+                <img src="${imgSrcPerfil}" class="foto-perfil"/>
             </div>
             <a><p>${userName}</p><i class="fa-solid fa-message"></i></a>
         `;

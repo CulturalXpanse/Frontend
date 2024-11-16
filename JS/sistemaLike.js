@@ -168,6 +168,7 @@ async function obtenerLikesCount() {
             const likeCountElement = document.getElementById(`likeCount_${likes.post_id}`);
             if (likeCountElement) {
                 likeCountElement.textContent = likes.total_likes || 0;
+            } else {
             }
         });
     } catch (error) {
@@ -175,7 +176,7 @@ async function obtenerLikesCount() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', obtenerLikesCount);
+document.addEventListener('postsCargados', obtenerLikesCount);
 
 async function getUserId() {
     const token = localStorage.getItem('accessToken');

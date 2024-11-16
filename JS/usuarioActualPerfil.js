@@ -152,22 +152,24 @@ async function cargarPostsYEventosPerfil(usuarioId) {
                                 <i id="openCommentModal-${elemento.id}" class="fa-solid fa-comment fa-xl icono" onclick="abrirModalComentarios('${elemento.id}')"></i>
                                 <span id="comentariosCount_${elemento.id}">0</span>
                             </div>
-                            <div>
-                                <i id="openShareModal" class="fa-solid fa-share fa-xl icono" onclick="openShareModal()"></i>
-                            </div>
                         </div>
                     </div>
                 `;
             }
 
             postsEventosContainer.appendChild(elementoContainer);
+
+            obtenerComentariosCount();
+
+            const event = new CustomEvent('postsCargados');
+            document.dispatchEvent(event);
         });
     } catch (error) {
         console.error('Error al cargar los elementos:', error);
     }
 }
 
-const dots = document.querySelectorAll('.dots');
+        const dots = document.querySelectorAll('.dots');
         dots.forEach(dot => {
             dot.addEventListener('click', function(event) {
                 const dropdown = this.nextElementSibling;
@@ -191,5 +193,33 @@ const dots = document.querySelectorAll('.dots');
                 window.location.href = `perfilUsuario.html?id=${userId}`; 
             });
         });
+
+// Función para obtener la cantidad de comentarios y actualizar el contador en el frontend
+async function obtenerComentariosCount() {
+    const token = localStorage.getItem('accessToken');
+    try {
+        const response = await fetch('http://localhost:8001/api/posts/comentarios/count', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al obtener el conteo de comentarios');
+        }
+
+        const data = await response.json();
+
+        data.forEach((comentario) => {
+            const comentariosCountElement = document.getElementById(`comentariosCount_${comentario.post_id}`);
+            if (comentariosCountElement) {
+                comentariosCountElement.textContent = comentario.comentarios_count || 0;
+            }
+        });
+    } catch (error) {
+        console.error('Error al obtener los comentarios:', error);
+    }
+}
 
 document.addEventListener('DOMContentLoaded', obtenerPerfilUsuario);

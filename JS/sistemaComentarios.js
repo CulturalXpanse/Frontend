@@ -79,36 +79,6 @@ function cargarComentarios(postId) {
     });
 }
 
-// Función para obtener la cantidad de comentarios y actualizar el contador en el frontend
-async function obtenerComentariosCount() {
-    const token = localStorage.getItem('accessToken');
-    try {
-        const response = await fetch('http://localhost:8001/api/posts/comentarios/count', {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
-
-        if (!response.ok) {
-            throw new Error('Error al obtener el conteo de comentarios');
-        }
-
-        const data = await response.json();
-
-        data.forEach((comentario) => {
-            const comentariosCountElement = document.getElementById(`comentariosCount_${comentario.post_id}`);
-            if (comentariosCountElement) {
-                comentariosCountElement.textContent = comentario.comentarios_count || 0;
-            }
-        });
-    } catch (error) {
-        console.error('Error al obtener los comentarios:', error);
-    }
-}
-
-window.onload = obtenerComentariosCount;
-
 // Evento para el envío del comentario
 document.getElementById('submitComment').addEventListener('click', async () => {
     const commentInput = document.getElementById('commentInput');

@@ -1,7 +1,7 @@
-async function obtenerUsuarioId() {
+async function obtenerGrupos() {
     try {
-        const token = localStorage.getItem('accessToken');
-        const response = await fetch('http://localhost:8000/api/validate', {
+        const token = localStorage.getItem('accessToken'); // Obtener el token de localStorage
+        const response = await fetch('http://localhost:8002/api/grupos', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -10,70 +10,46 @@ async function obtenerUsuarioId() {
         });
 
         if (!response.ok) {
-            throw new Error('No se pudo obtener el ID del usuario');
+            throw new Error('No se pudieron obtener los grupos');
         }
 
         const data = await response.json();
-        return data.id;
-    } catch (error) {
-        console.error('Error al obtener el ID del usuario:', error);
-        return null;
-    }
-}
+        const grupos = data.grupos || [];
 
-async function obtenerAmigos() {
-    const usuarioId = await obtenerUsuarioId();
-
-    if (!usuarioId) {
-        console.error('No se pudo obtener el ID del usuario');
-        return;
-    }
-
-    try {
-        const response = await fetch(`http://localhost:8000/api/usuarios/${usuarioId}/amigos`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-
-        if (!response.ok) {
-            throw new Error('No se pudieron obtener los amigos');
+        if (Array.isArray(grupos)) {
+            mostrarGrupos(grupos);
+        } else {
+            console.error('La respuesta no contiene un array de grupos');
         }
-
-        const amigos = await response.json();
-
-        mostrarAmigos(amigos);
     } catch (error) {
-        console.error('Error al obtener los amigos:', error);
+        console.error('Error al obtener los grupos:', error);
     }
 }
 
-function mostrarAmigos(amigos) {
-    const listaAmigos = document.querySelector('.amigos-list');
+function mostrarGrupos(grupos) {
+    const listaGrupos = document.querySelector('.group-list');
 
-    amigos.forEach(amigo => {
-        const amigoElement = document.createElement('div');
-        amigoElement.classList.add('amigos');
-        amigoElement.id = `${amigo.id}`;
+    grupos.forEach(grupo => {
+        const groupElement = document.createElement('div');
+        groupElement.classList.add('group');
 
-        const imgSrcPerfil = amigo.foto_perfil
-            ? `http://localhost:8000/imagenes/perfiles/${amigo.foto_perfil}`
-            : '../Img/default-profile.png';
+        const imgSrcGrupo = grupo.foto
+            ? `http://localhost:8002/fotos/grupos/${grupo.foto}`
+            : '../Img/default-group.png';
 
-        const userName = amigo.name ? amigo.name : 'Usuario desconocido';
+        const grupoName = grupo.nombre || 'Grupo desconocido';
 
-        amigoElement.innerHTML = `
-            <div class="foto-perfil-container">
-                <img src="${imgSrcPerfil}" class="foto-perfil" alt="Foto de perfil de ${userName}"/>
+        groupElement.innerHTML = `
+            <div class="foto-grupo-container">
+                <img src="${imgSrcGrupo}" class="foto-grupo"/>
             </div>
-            <a><p>${userName}</p><i class="fa-solid fa-message"></i></a>
+            <a><p>Grupo ${grupoName}</p></a>
         `;
 
-        listaAmigos.appendChild(amigoElement);
+        listaGrupos.appendChild(groupElement);
     });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    obtenerAmigos();
+    obtenerGrupos();
 });

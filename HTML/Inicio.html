@@ -23,7 +23,10 @@
                 <!---------Buscador--------->
                 <div class="search-box">
                     <img src="../Img/search.png" alt="Imagen lupa">
-                    <input type="text" id="buscarInput" data-trad="buscar" placeholder="Buscar...">
+                    <input type="text" id="buscarInput" data-trad="buscar" placeholder="Buscar..." oninput="buscarUsuarios()">
+                </div>
+                <div id="usuariosResult" class="usuarios-result">
+                    <!-- Los usuarios filtrados aparecerán aquí -->
                 </div>
             </div>
             <div class="nav-right">
@@ -38,7 +41,7 @@
                     </li>
                     <li>
                         <!---------Boton de Grupo--------->
-                        <i class="fa-solid fa-users-rectangle fa-xl grupo-button" id="grupo-icon" alt="Boton Grupo"></i>
+                        <i class="fa-solid fa-users-rectangle fa-xl group-button" id="grupo-icon" alt="Boton Grupo"></i>
                     </li>
                     <li>
                         <!---------Notificaciones----------> 
@@ -152,19 +155,14 @@
             <h4><i class="fa-solid fa-people-group"></i><p data-trad="grupos">Grupos</p></h4>
         </div>
         <div class="group-list">
-            <div class="group">
-                <div class="foto-grupo-container">
-                    <img src="${imgSrcPerfil}" class="foto-grupo" alt="Foto de grupo de ${grupoName}"/>
-                </div>
-                <a><p>Grupo ${grupoName}</p></a>
-            </div>
+            <!---Aqui se cargan los grupos--->
         </div>
         <div class="linea"></div>
         <!---------Publicidad--------->
         <div class="advertisement">
             <h4 data-trad="publicidad">Publicidad</h4>
         </div>
-        <img src="../Img/advertisement.png" class="sidebar-ads" alt="Publicidad">
+        <img src="../Img/publicidadImagen.png" class="sidebar-ads" alt="Publicidad">
     </div>
     <div id="modalVerEventos" class="modalVerEventos">
         <div class="modal-contentVerEventos">
@@ -180,19 +178,18 @@
         </ul>
     </div>
     <!--------------Chat-------------->
-    <div class="chat-container minimized" id="chat-container">
+    <!--<div class="chat-container minimized" id="chat-container">
         <div class="chat-header" id="chat-header">
             <h2>Chat</h2>
             <span class="username">Usuario</span>
         </div>
         <div class="chat-messages" id="chat-messages">
-            <!-- Mensajes -->
         </div>
         <div class="chat-input">
             <textarea id="message-input" placeholder="Escribe un mensaje..."></textarea>
             <button id="send-btn">Enviar</button>
         </div>
-    </div>
+    </div>-->
     <!---------Compartir Post--------->
     <!--<div id="shareModal" class="modalCompartir">
         <div class="modal-contentCompartir">
@@ -212,7 +209,8 @@
                 <!------Comentarios------>
             </div>
             <!-- Caja de texto para el comentario -->
-            <textarea id="commentInput" data-trad="escribeComentario" placeholder="Escribe tu comentario aquí..."></textarea>
+            <label for="escribeComentario" data-trad="escribeComentario"></label>
+            <textarea id="commentInput"></textarea>
             <button class="comentar-btn" id="submitComment" data-trad="enviarComentario">Enviar Comentario</button>
         </div>
     </div>       
@@ -267,7 +265,50 @@
                 </div>
             </form>
         </div>
-    </div>    
+    </div>
+    <!-----------Modal Crear Grupo------------>
+    <div id="group-modal" class="modalGroup">
+        <div class="modal-contentGroup">
+            <span class="closeGroup">&times;</span>
+            <h2 class="creoGroup" data-trad="crearGrupo">Crear nuevo grupo</h2>
+            <form>
+                <div class="group-form">
+                    <label for="groupName" data-trad="nombreGrupo">Nombre del grupo</label>
+                    <input type="text" id="groupName" required>
+    
+                    <label for="groupDescription" data-trad="descripcionGrupo">Descripción del grupo</label>
+                    <textarea id="groupDescription" rows="4" required></textarea>
+    
+                    <label for="publicGroup" data-trad="grupoPublico">Grupo Público</label>
+                    <input type="checkbox" id="publicGroup">
+                    <div class="etiquetas">
+                        <label for="foto" data-trad="nombreGrupo">Foto</label>
+                        <div class="custom-file-upload-group-foto">
+                            <span id="group-file-name" data-trad="ningunArchivoSelec">Ningún archivo seleccionado</span>
+                            <label for="groupPhotoInput">
+                                <button type="button"><i class="fa-solid fa-upload fa-2x1"></i></button>
+                            </label>
+                            <input type="file" id="groupPhotoInput" style="display: none;">
+                        </div>
+                        
+                        <label for="banner" data-trad="nombreGrupo">Banner</label>
+                        <div class="custom-file-upload-group-banner">
+                            <span id="group-banner-name" data-trad="ningunArchivoSelec">Ningún banner seleccionado</span>
+                            <label for="groupBannerInput">
+                                <button type="button"><i class="fa-solid fa-upload fa-2x1"></i></button>
+                            </label>
+                            <input type="file" id="groupBannerInput" style="display: none;">
+                        </div>
+                    </div>
+    
+                    <div class="modal-actions-group">
+                        <button type="button" id="submit-group" data-trad="crearGrupo">Crear Grupo</button>
+                        <button type="button" class="cancel-group" data-trad="cancelar">Cancelar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     <!---------Cambiar Idioma--------->
     <div id="languageModal" class="modalIdioma">
         <div class="modal-content">
@@ -309,6 +350,22 @@
             <button id="cerrarModalAlertaNoEvento" class="button" data-trad="aceptar">Aceptar</button>
         </div>
     </div>
+        <!--------------Grupo-Creado-Exitosamente-------------->
+        <div id="alertaExitosoModalGrupo" class="modalAlerta">
+            <div class="modal-contentAlerta">   
+                <h2 data-trad="publicado">¡Grupo creado!</h2>
+                <p data-trad="correctamentePost">Grupo creado con exito.</p>
+                <button id="cerrarModalAlertaGrupo" class="button" data-trad="aceptar">Aceptar</button>
+            </div>
+        </div>
+        <!--------------Grupo-No-Creado-Exitosamente-------------->
+        <div id="alertaNoExitosoModalGrupo" class="modalAlerta">
+            <div class="modal-contentAlerta">
+                <h2 data-trad="error">¡Error!</h2>
+                <p>Hubo un problema al hacer el grupo.</p>
+                <button id="cerrarModalAlertaNoGrupo" class="button" data-trad="aceptar">Aceptar</button>
+            </div>
+        </div>
     <!----Barra de abajo para iconos en telefono---->
     <div class="bottom-bar">
         <div class="search-box">
@@ -353,6 +410,8 @@
     <script src="../JS/usuarioActual.js"></script>
     <script src="../JS/dropdownMenu.js"></script>
     <script src="../JS/amigos.js"></script>
+    <script src="../JS/grupos.js"></script>
+    <script src="../JS/buscador.js"></script>
     <script src="../JS/botonCrearPost.js"></script>
     <script src="../JS/botonCrearEvento.js"></script>
     <script src="../JS/botonCrearGrupo.js"></script>
@@ -363,7 +422,7 @@
     <script src="../JS/sistemaComentarios.js"></script>
     <!--<script src="../JS/sistemaCompartir.js"></script>-->
     <script src="../JS/verEventos.js"></script>
-    <script src="../JS/chat.js"></script>
+    <!--<script src="../JS/chat.js"></script>-->
     <script src="../JS/clickDerecho.js"></script>
     <script src="../JS/cerrarSesion.js"></script>
 </body>

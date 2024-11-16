@@ -56,6 +56,9 @@ nav{
     border-radius: 50%;
     cursor: pointer;
 }
+
+/* -----Buscador de perfiles---- */
+
 .search-box {
     background-color: #efefef;
     width: 350px;
@@ -78,6 +81,59 @@ nav{
 .search-box:focus-within{
     border: 0.1rem solid #B0FE76;
 }
+#usuariosResult {
+    display: none;
+    position: absolute;
+    top: 50px;
+    left: 300px;
+    width: 18.5%;
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: var(--bg-color);
+    border: 1px solid var(--color-iconos);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    margin-top: 5px;
+}
+#usuariosResult ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+#usuariosResult li {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid var(--color-iconos);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+#usuariosResult li:hover {
+    background-color: var(--color-iconos);
+}
+.foto-perfil-container {
+    width: 40px;
+    height: 40px;
+    margin-right: 15px;
+}
+.foto-perfil {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.nombre-usuario {
+    font-size: 16px;
+    color: var(--letras);
+    margin: 0;
+}
+.usuario-item i {
+    margin-left: auto;
+    color: var(--letras);
+    font-size: 14px;
+}
+
+/* ----------------------------- */
 .container {
     display: flex;
     justify-content: space-between;
@@ -834,7 +890,7 @@ nav{
 .modalPost {
     display: none;
     position: fixed;
-    z-index: 1;
+    z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
@@ -947,7 +1003,7 @@ textarea {
 .modalEvent {
     display: none;
     position: fixed;
-    z-index: 1;
+    z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
@@ -988,7 +1044,7 @@ textarea {
 .evento-form label {
     font-size: 14px;
     font-weight: bold;
-    color: var(--color1);
+    color: var(--letras);
 }
 #eventName, #eventDescription, #eventStartDate, #eventEndDate {
     width: 100%;
@@ -1049,6 +1105,138 @@ textarea {
     color: white;
 }
 .cancel-event:hover {
+    background-color: #7c1620;
+}
+
+/* ----------------------------- */
+
+/* ------Modal Crear Grupo------ */
+
+.modalGroup {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+}
+.modal-contentGroup {
+    background-color: var(--bg-color);
+    color: var(--letras);
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    border-radius: 10px;
+    position: relative;
+    animation: fadeIn 0.3s;
+}
+.creoGroup {
+    margin-bottom: 15px;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+.closeGroup {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: var(--letras);
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.closeGroup:hover {
+    color: var(--color-iconos);
+}
+.group-form label {
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--letras);
+}
+#groupName, #groupDescription {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+.etiquetas label {
+    display: block;
+    text-align: right;
+    margin-bottom: 5px;
+}
+.custom-file-upload-group-foto {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    margin-bottom: 15px;
+}
+.custom-file-upload-group-foto button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    margin-top: 10px;
+    margin-left: 10px;
+    padding: 10px 54px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.custom-file-upload-group-foto button:hover {
+    background-color: #0056b3;
+}
+.custom-file-upload-group-banner {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    margin-bottom: 15px;
+}
+.custom-file-upload-group-banner button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    margin-top: 10px;
+    margin-left: 10px;
+    padding: 10px 54px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.custom-file-upload-group-banner button:hover {
+    background-color: #0056b3;
+}
+.modal-actions-group {
+    display: flex;
+    justify-content: right;
+    gap: 15px;
+}
+
+.modal-actions-group button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#submit-group {
+    background-color: #B0FE76;
+    color: #000;
+}
+#submit-group:hover {
+    color: #000;
+    background-color: #81E979;
+}
+.cancel-group {
+    background-color: #dc3545;
+    color: white;
+}
+.cancel-group:hover {
     background-color: #7c1620;
 }
 

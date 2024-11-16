@@ -193,9 +193,6 @@
                                     <i id="openCommentModal-${elemento.id}" class="fa-solid fa-comment fa-xl icono" onclick="abrirModalComentarios('${elemento.id}')"></i>
                                     <span id="comentariosCount_${elemento.id}">0</span>
                                 </div>
-                                <div>
-                                    <i id="openShareModal" class="fa-solid fa-share fa-xl icono" onclick="openShareModal()"></i>
-                                </div>
                             </div>
                         </div>
                     `;
